@@ -1,10 +1,12 @@
-import React from 'react';
+import React from 'react'
+import RegistrationForm from './components/RegistrationForm'
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <p>Hello World</p>
+      {RegistrationForm()}
     </div>
   );
 }
