@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import registrationService from "../services/register";
+import '../App.css';
+import { Button } from 'antd';
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState("");
@@ -39,7 +41,7 @@ const RegistrationForm = () => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type="submit">register</button>
+        <Button type="primary">Primary</Button>
       </form>
     </div>
   );
