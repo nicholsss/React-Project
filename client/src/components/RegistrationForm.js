@@ -23,11 +23,8 @@ const RegistrationForm = () => {
   return (
     <div>
       <h2>Please Register</h2>
-      <p>This is APP</p>
-      <p>Is this APP</p>
-      <p>Yoman!!!!</p>
-      <p>Okei!</p>
-      <p>dosadia</p>
+      
+     
       <form onSubmit={handleRegister}>
         <div>
           username
