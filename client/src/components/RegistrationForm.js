@@ -24,11 +24,8 @@ const RegistrationForm = () => {
     <div>
       <h2>Please Register</h2>
       <p>This is APP</p>
-<<<<<<< HEAD
       <p>Is this APP</p>
-=======
       <p>Yoman!!!!</p>
->>>>>>> c525adbc4eeeb21733ec6754a67b955f5dfd7fd7
       <form onSubmit={handleRegister}>
         <div>
           username
