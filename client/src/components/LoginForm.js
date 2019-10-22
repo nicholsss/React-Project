@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import '../App.css';
-import loginService from '../services/login'
 import styled from 'styled-components'
-const LoginForm = () => {
+import { connect } from 'react-redux'
+import { loginUser,setUser} from "../reducers/loginReducer";
+
+
+const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +13,7 @@ const LoginForm = () => {
 const handleLogin = async event => {
   event.preventDefault()
   try{
-    await loginService.login({
+     props.loginUser({
       'username':username,
       'password':password
     })
@@ -51,7 +54,9 @@ const handleLogin = async event => {
   );
 };
 
-export default LoginForm;
+export default connect(null,{
+  loginUser
+})(LoginForm)
 
 const Button = styled.button`
   background: transparent;
