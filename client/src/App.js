@@ -7,8 +7,9 @@ import {
 import RegistrationForm from './components/RegistrationForm'
 import LoginForm from './components/LoginForm'
 
-const App = () => {
+const App = (props) => {
   const padding = { padding: 5 }
+  console.log(props)
   return (
     <div className="App">
       <Router>

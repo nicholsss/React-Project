@@ -15,6 +15,7 @@ const RegistrationForm = () => {
       });
       setUsername("");
       setPassword("");
+      console.log('register succes')
     } catch (exception) {
       console.log('invalid username or password')
     }
