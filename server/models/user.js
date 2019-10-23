@@ -8,12 +8,12 @@ const userSchema = mongoose.Schema({
     unique: true
   },
   passwordHash: String,
-  /*projects: [
+  recipes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Project'
+      ref: 'Recipe'
     }
-  ],*/
+  ],
 })
 
 userSchema.plugin(uniqueValidator)
