@@ -45,6 +45,7 @@ const App = props => {
     );
   }
   return (
+    <div className="App">
     <Router>
       <div>
         <Link style={padding} to="/">
@@ -61,6 +62,7 @@ const App = props => {
       </Button>
     
     </Router>
+    </div>
   );
 };
 
