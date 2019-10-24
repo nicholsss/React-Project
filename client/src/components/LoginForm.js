@@ -9,7 +9,6 @@ const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  
 const handleLogin = async event => {
   event.preventDefault()
   try{
