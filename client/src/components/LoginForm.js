@@ -1,35 +1,32 @@
 import React, { useState } from "react";
-import '../App.css';
-import styled from 'styled-components'
-import { connect } from 'react-redux'
-import { loginUser,setUser} from "../reducers/loginReducer";
+import "../App.css";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import { loginUser, setUser } from "../reducers/loginReducer";
 
-
-const LoginForm = (props) => {
+const LoginForm = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const handleLogin = async event => {
-  event.preventDefault()
-  try{
-     props.loginUser({
-      'username':username,
-      'password':password
-    })
-    setUsername("");
+  const handleLogin = async event => {
+    event.preventDefault();
+    try {
+      props.loginUser({
+        username: username,
+        password: password
+      });
+      setUsername("");
       setPassword("");
-      console.log("loggin succes")
-  }catch(expection){
-    console.log('Login failed')
-  }
-  
-}
+      console.log("loggin succes");
+    } catch (expection) {
+      console.log("Login failed");
+    }
+  };
 
   return (
     <div>
       <h2>Please Login</h2>
-     
-     
+
       <form onSubmit={handleLogin}>
         <div>
           username
@@ -53,9 +50,12 @@ const handleLogin = async event => {
   );
 };
 
-export default connect(null,{
-  loginUser
-})(LoginForm)
+export default connect(
+  null,
+  {
+    loginUser
+  }
+)(LoginForm);
 
 const Button = styled.button`
   background: transparent;
@@ -64,4 +64,4 @@ const Button = styled.button`
   color: palevioletred;
   margin: 0 1em;
   padding: 0.25em 1em;
-`
+`;

@@ -19,7 +19,7 @@ const App = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const padding = { padding: 5 };
-  console.log(props.user);
+ 
 
   if (props.user === null) {
     return (
@@ -44,24 +44,24 @@ const App = props => {
       </div>
     );
   }
+  console.log("useri",props.user.username);
   return (
     <div className="App">
-    <Router>
-      <div>
-        <Link style={padding} to="/">
-          Home
-        </Link>
-        <Link to="/addrecipe"> Add recipe</Link>
-      </div>
-      <div>
-        <Route exact path="/addrecipe" render={() => <RecipeForm/>}/>
-      </div>
-      
-      <Button color="pink" onClick={props.logout}>
-        logout
-      </Button>
-    
-    </Router>
+      <Router>
+        <div>
+          <Link style={padding} to="/">
+            Home
+          </Link>
+          <Link to="/addrecipe"> Add recipe</Link>
+        </div>
+        <div>
+          <Route exact path="/addrecipe" render={() => <RecipeForm />} />
+        </div>
+
+        <Button color="pink" onClick={props.logout}>
+          logout
+        </Button>
+      </Router>
     </div>
   );
 };

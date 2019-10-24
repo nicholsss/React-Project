@@ -6,9 +6,9 @@ const reducer = (state = null, action) => {
       return action.data;
 
     case "LOGOUT":
-      return action.data;
+      return null;
 
-    case "SET_USER":
+    case "INITLOGIN":
       return action.data;
 
     default:
@@ -27,12 +27,8 @@ export const loginUser = (username, password) => {
   };
 };
 export const logout = () => {
-  return async dispatch => {
-    dispatch({
-      data: null,
-      type: "LOGOUT"
-    });
-  };
+  window.localStorage.removeItem("loggedUser");
+  return { type: "LOGOUT" };
 };
 export const initializeLogin = () => {
   return async dispatch => {
