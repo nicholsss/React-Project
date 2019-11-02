@@ -9,6 +9,7 @@ import {
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
+import RecipeList from './components/RecipeList'
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -40,6 +41,7 @@ const App = props => {
             <Route exact path="/login" render={() => <LoginForm />} />
             <Route exact path="/register" render={() => <RegistrationForm />} />
           </div>
+          <RecipeList/>
         </Router>
       </div>
     );

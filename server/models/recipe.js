@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const recipeSchema = new mongoose.Schema({
     title: String,
-    category: [String],
-    time:Number,
+    category: String,
+   //time:Number,
     ingredient:[String],
     instruction:String,
 

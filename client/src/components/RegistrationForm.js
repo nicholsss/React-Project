@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import registrationService from "../services/register";
-import '../App.css';
+import "../App.css";
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async (event) => {
-    event.preventDefault()
+  const handleRegister = async event => {
+    event.preventDefault();
     try {
       await registrationService.register({
-        "username": username,
-        "password": password
+        username: username,
+        password: password
       });
       setUsername("");
       setPassword("");
-      console.log('register succes')
+      console.log("register succes");
     } catch (exception) {
-      console.log('invalid username or password')
+      console.log("invalid username or password");
     }
   };
 
   return (
     <div>
       <h2>Please Register</h2>
-      
-     
+
       <form onSubmit={handleRegister}>
         <div>
           username

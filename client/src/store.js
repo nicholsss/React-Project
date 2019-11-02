@@ -1,13 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-import userReducer from './reducers/loginReducer'
+import userReducer from "./reducers/loginReducer";
+import recipeReducer from "./reducers/recipeReducer";
+const reducer = combineReducers({
+  user: userReducer,
+  recipes: recipeReducer
+});
 
-const reducer = combineReducers ({
+const store = createStore(reducer, applyMiddleware(thunk));
 
-    user:userReducer
-})
-
-const store = createStore(reducer, applyMiddleware(thunk))
-
-export default store
+export default store;
