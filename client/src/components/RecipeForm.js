@@ -8,17 +8,17 @@ const RecipeForm = props => {
   const [ingredient, setIngredient] = useState("");
   const [instruction, setInstruction] = useState("");
   const [category, setCategory] = useState("");
-  //const [list, setList] = useState([])
+  const [list, setList] = useState([])
   //handleri tekemään lisäyksen backendiin
   console.log("category", category);
   console.log("list ofingredient", ingredient);
-  //console.log("list", list);
+  console.log("list", list);
 
   //<Button onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
   const handleSubmit = async event => {
     event.preventDefault();
 
-    props.createRecipe(category.value, ingredient.value,instruction.value)
+    props.createRecipe(category.value, ingredient.value, instruction.value);
   };
 
   return (
@@ -45,13 +45,11 @@ const RecipeForm = props => {
           />
         </div>
         <div>{/* List that shows  ingredients*/}</div>
-        <Button>Add a Ingerient</Button>
-     
+        <Button type ="button"onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
 
-      <div className="guideInput">
-        <h2>Add Recipe guide</h2>
+        <div className="guideInput">
+          <h2>Add Recipe guide</h2>
 
-        
           <div>
             <textarea
               type="string"
@@ -61,9 +59,7 @@ const RecipeForm = props => {
           </div>
           {/* This button adds recipe*/}
           <Button type="submit">Create</Button>
-          
-        
-      </div>
+        </div>
       </form>
     </div>
   );
@@ -72,7 +68,8 @@ const RecipeForm = props => {
 export default connect(
   null,
   {
-    RecipeForm,createRecipe
+    RecipeForm,
+    createRecipe
   }
 )(RecipeForm);
 

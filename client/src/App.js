@@ -54,10 +54,10 @@ const App = props => {
           <Link style={padding} to="/">
             Home
           </Link>
-          <Link to="/addrecipe"> Add recipe</Link>
+          <Link to="/recipes"> Add recipe</Link>
         </div>
         <div>
-          <Route exact path="/addrecipe" render={() => <RecipeForm />} />
+          <Route exact path="/recipes" render={() => <RecipeForm />} />
         </div>
 
         <Button color="pink" onClick={props.logout}>

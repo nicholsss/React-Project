@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs Content-Type: application/json Authorization: Bearer $2b$10$vTejHPub6HT8oGb.R76TuueMqn9Y0WUBnbb1LuG3ZzJm7xwoNbBCm
+
+{
+"title": "Toimiikos",
+ "userId":"5dbde6e84956713b603e02e0",
+
+    "category": "sk",
+    "ingredient":["sd"],
+    "instruction":"sds",
+}

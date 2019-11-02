@@ -13,7 +13,7 @@ recipesRouter.post('/',async(request,reponse) =>{
     const recipe = new Recipe(request.body)
 
     if(!request.token) {
-       // return response.status(401).json({ error: 'token missing or invalid' })
+        return response.status(401).json({ error: 'token missing or invalid' })
     }
     const decodedToken = jwt.verify(request.token, process.env.SECRET)
 
