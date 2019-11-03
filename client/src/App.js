@@ -9,7 +9,7 @@ import {
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
-import RecipeList from './components/RecipeList'
+import RecipeList from "./components/RecipeList";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -20,11 +20,11 @@ const App = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const padding = { padding: 5 };
- 
 
   if (props.user === null) {
     return (
       <div className="App">
+        
         <Router>
           <div>
             <Link style={padding} to="/">
@@ -41,12 +41,12 @@ const App = props => {
             <Route exact path="/login" render={() => <LoginForm />} />
             <Route exact path="/register" render={() => <RegistrationForm />} />
           </div>
-          <RecipeList/>
+        <h1>Homepage has buttons to filter food category</h1>
         </Router>
       </div>
     );
   }
-  console.log("useri",props.user.username);
+  console.log("useri", props.user.username);
   return (
     <div className="App">
       <Router>
@@ -69,7 +69,7 @@ const App = props => {
 };
 
 const mapStateToProps = state => {
-  return { user: state.user };
+  return { user: state.user, recipes: state.recipes };
 };
 const mapDispatchToProps = {
   initializeLogin,

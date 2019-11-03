@@ -4,15 +4,14 @@ const User = require("../models/user");
 
 usersRouter.get("/", async (request, response) => {
   const users = await User
-    .find({}).populate("projects")
-    
+    .find({}).populate("recipes", {title:1,category:1,ingredient:1,instruction:1})
   response.json(users.map(u => u.toJSON()));
 });
 
 usersRouter.get('/:id', async (request, response, next) => {
   try{
     const user = await User
-    .findById(request.params.id).populate("projects")
+    .findById(request.params.id).populate("recipes")
     if (user) {
       response.json(user.toJSON())
     } else {

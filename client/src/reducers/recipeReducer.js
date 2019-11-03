@@ -9,19 +9,20 @@ ingredient:[String],
 instruction:String,
 */
 
-const reducer = (state = null, action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
     case "ADD":
-      return action.data;
+      return state.concat(action.data)
 
     default:
       return state;
   }
 };
 
-export const createRecipe = (title, category, ingredient, instruction) => {
+export const createRecipe = (title,  instruction) => {
   return async dispatch => {
-    const recipe = { title, category, ingredient, instruction };
+    //console.log("reduxx", category)
+    const recipe = { title, instruction };
     const newRecipe = await recipeService.create(recipe);
 
     dispatch({

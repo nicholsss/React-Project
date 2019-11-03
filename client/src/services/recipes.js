@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/addrecipe'
+const baseUrl = '/api/recipes'
 
 let token = null
 
@@ -25,4 +25,4 @@ const setToken = newToken => {
       return response.data
   }
 
-export default {getAll,create}
+export default {getAll,create,setToken}
