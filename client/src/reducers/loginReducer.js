@@ -22,6 +22,7 @@ export const loginUser = (username, password) => {
     const user = await loginService.login(username, password);
     window.localStorage.setItem("loggedUser", JSON.stringify(user));
     console.log("tokeni",user.token)
+    console.log("user name",username)
     recipeService.setToken(user.token)
     dispatch({
       data: user,
@@ -38,7 +39,7 @@ export const initializeLogin = () => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
-      //await recipeService.setToken(user.token)
+      await recipeService.setToken(user.token)
       dispatch({
         data: user,
         type: "INITLOGIN"

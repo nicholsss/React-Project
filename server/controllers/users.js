@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 usersRouter.get("/", async (request, response) => {
   const users = await User
-    .find({}).populate("recipes", {title:1,category:1,ingredient:1,instruction:1})
+    .find({}).populate("recipes", {title:1,category:1,ingredients:1,instruction:1})
   response.json(users.map(u => u.toJSON()));
 });
 

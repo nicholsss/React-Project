@@ -8,7 +8,7 @@ recipesRouter.get("/", async (request, response) => {
   response.json(recipes.map(r => r.toJSON()));
 });
 
-recipesRouter.post("/", async (request, reponse) => {
+recipesRouter.post("/", async (request, response) => {
   const recipe = new Recipe(request.body);
 
   if (!request.token) {

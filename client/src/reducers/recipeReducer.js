@@ -1,13 +1,5 @@
-// import servicer
-import recipeService from "../services/recipes";
 
-//Values of recipe
-/*title: String,
-category: String,
-time:Number, Disabled for now
-ingredient:[String],
-instruction:String,
-*/
+import recipeService from "../services/recipes";
 
 const reducer = (state = [], action) => {
   switch (action.type) {
@@ -19,12 +11,14 @@ const reducer = (state = [], action) => {
   }
 };
 
-export const createRecipe = (title,  instruction) => {
+export const createRecipe = (title,category,ingredients,instruction) => {
+  console.log("reduxx", title)
   return async dispatch => {
-    //console.log("reduxx", category)
-    const recipe = { title, instruction };
-    const newRecipe = await recipeService.create(recipe);
-
+    
+    const recipe = { title, category,ingredients,instruction };
+    console.log("whole recipe", recipe)
+    const newRecipe = await recipeService.create(recipe)
+    
     dispatch({
       data: newRecipe,
       type: "ADD"

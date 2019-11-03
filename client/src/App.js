@@ -47,6 +47,7 @@ const App = props => {
     );
   }
   console.log("useri", props.user.username);
+  console.log("recipe", props.recipes.title);
   return (
     <div className="App">
       <Router>

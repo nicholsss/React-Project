@@ -1,4 +1,4 @@
-POST http://localhost:3003/api/recipes Content-Type: application/json Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVkYmRlNmU4NDk1NjcxM2I2MDNlMDJlMCIsImlhdCI6MTU3Mjc3ODAxNn0.kEXHGlEDBxA-Nm7M-OhD5OCfpAIoPW9KjOy-DNKOoeQ
+POST http://localhost:3000/api/recipes Content-Type: application/json Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVkYmRlNmU4NDk1NjcxM2I2MDNlMDJlMCIsImlhdCI6MTU3Mjc3ODAxNn0.kEXHGlEDBxA-Nm7M-OhD5OCfpAIoPW9KjOy-DNKOoeQ
 
 {
 "title": "Toimiikos",
