@@ -7,7 +7,7 @@ const reducer = (state = null, action) => {
       return action.data;
 
     case "VEGETARIAN":
-      return null;
+      return action.data;
 
     case "SOUP":
       return action.data;
@@ -18,6 +18,4 @@ const reducer = (state = null, action) => {
     default:
       return state;
   }
-
-  
 };

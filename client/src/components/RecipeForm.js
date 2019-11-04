@@ -33,7 +33,7 @@ const RecipeForm = props => {
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />
-
+    {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
         <h2>What category is your recipe</h2>
         <IngerientBtn type="button" onClick={() => setCategory("Meat")}>
           Meat
