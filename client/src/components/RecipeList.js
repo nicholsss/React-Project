@@ -31,7 +31,7 @@ const RecipeList = props => {
   */}
 
       {props.recipes.map(recipe => (
-        <li>
+        <li key={recipe.id}>
           <Button>
             <Link to={"/recipes/${recipe.id}"}>{recipe.title}</Link>
           </Button>

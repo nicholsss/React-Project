@@ -10,6 +10,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
 import RecipeList from "./components/RecipeList";
+import Recipe from './components/Recipe'
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -22,10 +23,10 @@ const App = props => {
   }, []);
   useEffect(() => {
     props.initializeRecipes();
-  });
+  }, []);
+  const recipeById = id => props.recipes.find(r => r.id === id)
   const padding = { padding: 5 };
-  console.log("apissa resepti",props.recipes[1])
-
+console.log(props)
 
   if (props.user === null) {
     return (
@@ -52,8 +53,6 @@ const App = props => {
       </div>
     );
   }
-  console.log("useri", props.user.username);
-  console.log("recipe", props.recipes.title);
   return (
     <div className="App">
      
@@ -73,6 +72,9 @@ const App = props => {
         <Route exact path="/allRecipes" render={() => <RecipeList />} />
         </div>
 
+        <Route exact path='/recipes/:id'
+        render={({ match }) => <Recipe recipe ={recipeById(match.params.id)}/>}
+        />
         <Button color="pink" onClick={props.logout}>
           logout
         </Button>

@@ -10,17 +10,10 @@ const RecipeForm = props => {
   const [instruction, setInstruction] = useState("");
   const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState([]);
-  //handleri tekemään lisäyksen backendiin
-  console.log("category", category);
-  console.log("list ofingredient", ingredient);
-  console.log("list", ingredients.id);
 
   //<Button onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
   const handleSubmit = async event => {
     event.preventDefault();
-    console.log("recipe name", title);
-    console.log("props name", props);
-    console.log("recipe ingredients", ingredients);
     props.createRecipe(title, category, ingredients, instruction);
   };
 
