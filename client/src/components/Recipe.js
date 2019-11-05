@@ -12,9 +12,14 @@ import {
 } from "react-router-dom";
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
-    console.log(props)
+    console.log("Recipe: ",props)
+    
   return (
-    <h1>Tänne reseptin tiedot</h1>
+   <div>
+     <h1>{props.recipe.title}</h1>
+     <p>{props.recipe.category}</p>
+     <p>{props.recipe.instruction}</p>
+   </div>
   );
 };
 

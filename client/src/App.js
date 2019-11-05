@@ -25,6 +25,8 @@ const App = props => {
     props.initializeRecipes();
   }, []);
   const recipeById = id => props.recipes.find(r => r.id === id)
+  
+  console.log("taa on yks resepti",props.recipes)
   const padding = { padding: 5 };
 console.log(props)
 
@@ -62,11 +64,11 @@ console.log(props)
           <Link style={padding} to="/">
             Home
           </Link>
-          <Link to="/recipes"> Add recipe </Link>
+          <Link to="/recipeForm"> Add recipe </Link>
           <Link to='/allRecipes'> All recipes</Link>
         </div>
         <div>
-          <Route exact path="/recipes" render={() => <RecipeForm />} />
+          <Route exact path="/recipeForm" render={() => <RecipeForm />} />
         </div>
         <div>
         <Route exact path="/allRecipes" render={() => <RecipeList />} />
