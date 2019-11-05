@@ -12,14 +12,22 @@ import {
 } from "react-router-dom";
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
-    console.log("Recipe: ",props)
-    
+  console.log("Recipe: ", props);
+
+  if (props.recipe === undefined) {
+    return null;
+  }
+  console.log("ainesosaaaaaa", props.recipe.ingredient);
   return (
-   <div>
-     <h1>{props.recipe.title}</h1>
-     <p>{props.recipe.category}</p>
-     <p>{props.recipe.instruction}</p>
-   </div>
+    <div>
+      <h1>{props.recipe.title}</h1>
+      <p>{props.recipe.category}</p>
+
+      {props.recipe.ingredient.map(i => (
+        <li key={i}>{i}</li>
+      ))}
+      <p>{props.recipe.instruction}</p>
+    </div>
   );
 };
 
@@ -30,5 +38,3 @@ const MapStateToProps = state => {
 };
 
 export default connect(MapStateToProps)(Recipe);
-
-

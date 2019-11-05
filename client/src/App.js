@@ -10,7 +10,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
 import RecipeList from "./components/RecipeList";
-import Recipe from './components/Recipe'
+import Recipe from "./components/Recipe";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -24,16 +24,16 @@ const App = props => {
   useEffect(() => {
     props.initializeRecipes();
   }, []);
-  const recipeById = id => props.recipes.find(r => r.id === id)
-  
-  console.log("taa on yks resepti",props.recipes)
+
+  const recipeById = id => props.recipes.find(r => r.id === id);
+
+  console.log("taa on yks resepti", props.recipes);
   const padding = { padding: 5 };
-console.log(props)
+  console.log(props);
 
   if (props.user === null) {
     return (
       <div className="App">
-       
         <Router>
           <div>
             <Link style={padding} to="/">
@@ -57,25 +57,27 @@ console.log(props)
   }
   return (
     <div className="App">
-     
       <Router>
         <div>
-        
           <Link style={padding} to="/">
             Home
           </Link>
           <Link to="/recipeForm"> Add recipe </Link>
-          <Link to='/allRecipes'> All recipes</Link>
+          <Link to="/allRecipes"> All recipes</Link>
         </div>
         <div>
           <Route exact path="/recipeForm" render={() => <RecipeForm />} />
         </div>
         <div>
-        <Route exact path="/allRecipes" render={() => <RecipeList />} />
+          <Route exact path="/allRecipes" render={() => <RecipeList />} />
         </div>
 
-        <Route exact path='/recipes/:id'
-        render={({ match }) => <Recipe recipe ={recipeById(match.params.id)}/>}
+        <Route
+          exact
+          path="/recipes/:id"
+          render={({ match }) => (
+            <Recipe recipe={recipeById(match.params.id)} />
+          )}
         />
         <Button color="pink" onClick={props.logout}>
           logout
