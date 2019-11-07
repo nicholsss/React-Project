@@ -32,6 +32,7 @@ export const loginUser = (username, password) => {
 };
 export const logout = () => {
   window.localStorage.removeItem("loggedUser");
+  recipeService.destroyToken()
   return { type: "LOGOUT" };
 };
 export const initializeLogin = () => {
