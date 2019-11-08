@@ -24,6 +24,7 @@ export const loginUser = (username, password) => {
     console.log("tokeni",user.token)
     console.log("user name",username)
     recipeService.setToken(user.token)
+    recipeService.getAll("loggedUser")
     dispatch({
       data: user,
       type: "LOGIN"

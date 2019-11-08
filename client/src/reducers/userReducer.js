@@ -13,7 +13,7 @@ export const initializeUsers = () => {
     return async (dispatch) => {
 
         const data = await userService.getAll()
-
+        
         dispatch({
             data,
             type:'INITUSERS'

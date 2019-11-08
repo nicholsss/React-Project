@@ -32,9 +32,11 @@ const App = props => {
   }, []);
 
   const recipeById = id => props.recipes.find(r => r.id === id);
-  const userById = id => props.users.find(u => u.id ===id)
-  console.log("taa on yks resepti", props.recipes);
+  //const userById = id => props.users.find(u => u.id ===id)
+  
+  console.log("taa on yks resepti", props.recipes[1]);
   console.log("userien tiedot tähän:", props.users)
+  console.log("Userin tieto tahan:",props.user)
   const padding = { padding: 5 };
   
 
@@ -64,6 +66,8 @@ const App = props => {
   }
   return (
     <div className="App">
+
+      
       <Router>
         <div>
           <Link style={padding} to="/">
@@ -71,7 +75,8 @@ const App = props => {
           </Link>
           <Link to="/recipeForm"> Add recipe </Link>
           <Link to="/recipes"> All recipes </Link>
-          <Link to="/users"> my recipes</Link>
+          
+          <Link to="/myRecipes">my recipes</Link>
         </div>
         <div>
           <Route exact path="/recipeForm" render={() => <RecipeForm />} />
@@ -88,9 +93,9 @@ const App = props => {
           )}
         />
          <Route
-          exact path="/users/:id"
-          render={({ match }) => (
-            <MyRecipeList user={userById(match.params.id)} />
+          exact path="/myRecipes"
+          render={( ) => (
+            <MyRecipeList user = {props.user}/>
           )}
         />
         <Button onClick={props.logout}>
