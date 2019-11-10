@@ -16,7 +16,6 @@ const RecipeList = props => {
 
   /* Ohjelma kokoajan printtaa tätä consolee*/
   // console.log("mika taa on",props.recipes)
-
   return (
     <div>
       {/*

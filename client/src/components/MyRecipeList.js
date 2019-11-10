@@ -11,10 +11,16 @@ import {
   withRouter
 } from "react-router-dom";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
-const MyRecipeList = ({user}) => {
-  console.log("USEIRURHRSR", user.recipes)
+const MyRecipeList = props => {
+  //console.log("USEIRURHRSR", user.recipes)
   const [category, setCategory] = useState("");
-  console.log("userasrasrasafsafaaf",user)
+  console.log("userasrasrasafsafaaf", props.user.username);
+  console.log("object", props.users);
+  const recipeByUser = props.users.find(
+    re => re.username === props.user.username
+  );
+  console.log("rebbe.", recipeByUser);
+
   /* Ohjelma kokoajan printtaa tätä consolee*/
   // console.log("mika taa on",props.recipes)
 
@@ -29,15 +35,32 @@ const MyRecipeList = ({user}) => {
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
+    
   */}
-  
-    <h1>OK</h1>
+      {/*
+      recipeByUser && recipeByUser katsoo että ei ole tyhjä.
+       */}
+      {recipeByUser && recipeByUser.recipes.map(recipe => (
+        <li key ={recipe.id}>
+          <Button>
+          <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+          </Button>
+        </li>
+      ))}
+    
     </div>
   );
 };
 
+const MapStateToProps = state => {
+  return {
+    recipes: state.recipes,
+    user: state.user,
+    users: state.users
+  };
+};
 
-export default (MyRecipeList);
+export default connect(MapStateToProps)(MyRecipeList);
 
 const Button = styled.button`
   background: transparent;

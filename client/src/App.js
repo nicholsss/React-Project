@@ -11,7 +11,7 @@ import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
 import RecipeList from "./components/RecipeList";
 import Recipe from "./components/Recipe";
-import MyRecipeList from './components/MyRecipeList'
+import MyRecipeList from "./components/MyRecipeList";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -20,25 +20,21 @@ import { initializeUsers } from "./reducers/userReducer";
 
 const App = props => {
   useEffect(() => {
-    props.initializeLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    props.initializeUsers();
   }, []);
   useEffect(() => {
     props.initializeRecipes();
   }, []);
-  
+
   useEffect(() => {
-    props.initializeUsers();
+    props.initializeLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const recipeById = id => props.recipes.find(r => r.id === id);
   //const userById = id => props.users.find(u => u.id ===id)
-  
-  console.log("taa on yks resepti", props.recipes[1]);
-  console.log("userien tiedot tähän:", props.users)
-  console.log("Userin tieto tahan:",props.user)
+
   const padding = { padding: 5 };
-  
 
   if (props.user === null) {
     return (
@@ -64,10 +60,13 @@ const App = props => {
       </div>
     );
   }
+  console.log("user", props.user.username)
+  const userById = username => props.users.find(u => u.username ===username)
+  console.log("users", props.users)
   return (
     <div className="App">
+     
 
-      
       <Router>
         <div>
           <Link style={padding} to="/">
@@ -75,7 +74,7 @@ const App = props => {
           </Link>
           <Link to="/recipeForm"> Add recipe </Link>
           <Link to="/recipes"> All recipes </Link>
-          
+
           <Link to="/myRecipes">my recipes</Link>
         </div>
         <div>
@@ -92,22 +91,19 @@ const App = props => {
             <Recipe recipe={recipeById(match.params.id)} />
           )}
         />
-         <Route
-          exact path="/myRecipes"
-          render={( ) => (
-            <MyRecipeList user = {props.user}/>
-          )}
+        <Route
+          exact
+          path="/myRecipes"
+          render={() => <MyRecipeList />}
         />
-        <Button onClick={props.logout}>
-          logout
-        </Button>
+        <Button onClick={props.logout}>logout</Button>
       </Router>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return {users:state.users, user: state.user, recipes: state.recipes };
+  return { users: state.users, user: state.user, recipes: state.recipes };
 };
 const mapDispatchToProps = {
   initializeLogin,

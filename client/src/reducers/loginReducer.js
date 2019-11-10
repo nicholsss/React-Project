@@ -22,9 +22,9 @@ export const loginUser = (username, password) => {
     const user = await loginService.login(username, password);
     window.localStorage.setItem("loggedUser", JSON.stringify(user));
     console.log("tokeni",user.token)
-    console.log("user name",username)
+    console.log("username",username)
     recipeService.setToken(user.token)
-    recipeService.getAll("loggedUser")
+    //recipeService.getAll("loggedUser")
     dispatch({
       data: user,
       type: "LOGIN"
@@ -41,6 +41,7 @@ export const initializeLogin = () => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
+       recipeService.getAll("loggedUser")
       await recipeService.setToken(user.token)
       dispatch({
         data: user,
