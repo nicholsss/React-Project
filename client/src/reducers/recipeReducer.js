@@ -7,6 +7,9 @@ const reducer = (state = [], action) => {
 
     case "INITIALIZE":
       return action.data;
+      
+      case"REMOVE":
+      return state.filter(a => a.id !== action.data.id)
 
     default:
       return state;
@@ -26,6 +29,17 @@ export const createRecipe = (title, category, ingredients, instruction) => {
     });
   };
 };
+export const removeRecipe = recipe => {
+  return async dispatch => {
+    console.log("object", recipe)
+    await recipeService.remove(recipe)
+
+    dispatch({
+      data:recipe,
+      type:'REMOVE'
+    })
+  }
+}
 
 export const initializeRecipes = () => {
   return async dispatch => {

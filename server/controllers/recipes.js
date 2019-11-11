@@ -46,6 +46,28 @@ recipesRouter.post("/", async (request, response) => {
     next(exception)
   }
 })
+
+
+recipesRouter.delete('/:id', async (request,response) => {
+  if(!request.token){
+    return response.status(401).json({ error: 'token missing' })
+  }
+  
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+
+  if(!decodedToken.id){
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+  const recipe = await Recipe.findById(request.params.id)
+  
+  if(recipe.user.toString() === decodedToken.id){
+    await Recipe.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+  }else{
+    response.status(404).end()
+
+  }
+})
   /*
   const recipe = new Recipe(request.body);
 
