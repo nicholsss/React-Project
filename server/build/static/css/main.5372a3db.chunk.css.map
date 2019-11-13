@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AACA,KACE,qJAA4F,CAA5F,6FAA4F,CAA5F,sFAEF,CACA,MACE,SACF,CACA,UACE,UACF","file":"main.5372a3db.chunk.css","sourcesContent":["\r\n.App {\r\n  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);\r\n \r\n}\r\n.meat{\r\n  color: red;\r\n}\r\n.category{\r\n  color: blue;\r\n}"]}
