@@ -3,7 +3,18 @@ import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createRecipe } from "../reducers/recipeReducer";
-
+import { useField } from "../hooks";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Radio,
+  Select,
+  TextArea,
+  Label,
+  List
+} from "semantic-ui-react";
 const RecipeForm = props => {
   const [title, setTitle] = useState("");
   const [ingredient, setIngredient] = useState("");
@@ -15,34 +26,63 @@ const RecipeForm = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     props.createRecipe(title, category, ingredients, instruction);
+    setTitle("");
+    setIngredient("");
+    setInstruction('')
   };
-
+  const addIng = () => {
+    setIngredients(ingredients => [...ingredients, ingredient]);
+    setIngredient('')
+  };
   return (
     <div className="ingredientInput">
-      <form onSubmit={handleSubmit}>
-        <h1>Recipe name</h1>
-        <input
-          type="string"
-          value={title}
-          onChange={({ target }) => setTitle(target.value)}
-        />
-    {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
-        <h2>What category is your recipe</h2>
-        <IngerientBtn type="button" onClick={() => setCategory("Meat")}>
-          Meat
-        </IngerientBtn>
-        <IngerientBtn type="button" onClick={() => setCategory("Vegetarian")}>
-          Vegetarian
-        </IngerientBtn>
-        <IngerientBtn type="button" onClick={() => setCategory("Soup")}>
-          Soup
-        </IngerientBtn>
-        <IngerientBtn type="button" onClick={() => setCategory("Fish")}>
-          Fish
-        </IngerientBtn>
+      <Form onSubmit={handleSubmit}>
+        <Form.Field>
+          <h1>Recipe name</h1>
+          <input
+            type="string"
+            value={title}
+            onChange={({ target }) => setTitle(target.value)}
+          />
+        </Form.Field>
 
-        <div>
-          Ingerient
+        {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
+
+        <Form.Field>
+  <h2>What category is your recipe: {category}</h2>
+
+          <Button
+            type="button"
+            className={category === "Meat" ? "colored" : "5f6769"}
+            onClick={() => setCategory("Meat")}
+          >
+            Meat
+          </Button>
+          <Button
+            type="button"
+            className={category === "Vegetarian" ? "colored" : "5f6769"}
+            onClick={() => setCategory("Vegetarian")}
+          >
+            Vegetarian
+          </Button>
+          <Button
+            type="button"
+            className={category === "Soup" ? "colored" : "5f6769"}
+            onClick={() => setCategory("Soup")}
+          >
+            Soup
+          </Button>
+          <Button
+            type="button"
+            className={category === "Fish" ? "colored" : "5f6769"}
+            onClick={() => setCategory("Fish")}
+          >
+            Fish
+          </Button>
+        </Form.Field>
+        
+
+        <Form.Field>
           <input
             type="string"
             value={ingredient}
@@ -51,8 +91,7 @@ const RecipeForm = props => {
           <div>{/**/}</div>
           <Button
             type="button"
-            onClick={event =>
-              setIngredients(ingredients => [...ingredients, ingredient])
+            onClick={addIng
             }
           >
             Add a Ingerient
@@ -63,34 +102,30 @@ const RecipeForm = props => {
               <li key={index}>{item}</li>
             ))}
           </ul>
-          <div className="guideInput">
-            <h2>Add Recipe guide</h2>
+        </Form.Field>
 
-            <div>
-              <textarea
-                type="string"
-                value={instruction}
-                onChange={({ target }) => setInstruction(target.value)}
-              />
-            </div>
-            {/* This button adds recipe*/}
-            <Button type="submit">Create</Button>
-          </div>
+        <div className="guideInput">
+          <h2>Add Recipe guide</h2>
+
+          <textarea
+            wid="true"
+            value={instruction}
+            onChange={({ target }) => setInstruction(target.value)}
+          />
+
+          {/* This button adds recipe*/}
+          <Button type="submit">Create</Button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };
 
-export default connect(
-  null,
-  {
-    createRecipe
-  }
-)(RecipeForm);
+export default connect(null, {
+  createRecipe
+})(RecipeForm);
 
-const Button = styled.button`
-/* Adapt the colors based on primary prop */
+/*const Button = styled.button`
 background:white
 
 font-size: 1em;
@@ -99,13 +134,14 @@ padding: 0.25em 1em;
 border: 2px solid black;
 border-radius: 3px;
 `;
+*/
 
-const IngerientBtn = styled.button`
+/*const IngerientBtn = styled.button`
   /* Adapt the colors based on primary prop */
-  background: white;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
-  border-radius: 3px;
-`;
+//background: white;
+//font-size: 1em;
+//margin: 1em;
+//padding: 0.25em 1em;
+//border: 2px solid black;
+//border-radius: 3px;
+//`;

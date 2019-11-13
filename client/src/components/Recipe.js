@@ -10,7 +10,8 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-
+import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
+// <button onClick={() => remove(props.recipe)}>Delete</button>
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
 
@@ -30,16 +31,25 @@ const Recipe = props => {
   console.log("ainesosaaaaaa", props.recipe.ingredient);
   
   return (
-    <div>
+    <Segment>
+      <Grid columns={2} relaxed='very'>
+        <Grid.Column>
       <h1>{props.recipe.title}</h1>
-      <p>{props.recipe.category}</p>
+      <em><p>{props.recipe.category}</p></em>
 
       {props.recipe.ingredient.map(i => (
         <li key={i}>{i}</li>
       ))}
+      </Grid.Column>
+      <Grid.Column>
+        
       <p>{props.recipe.instruction}</p>
-      <button onClick={() => remove(props.recipe)}>Delete</button>
-    </div>
+
+      </Grid.Column>
+
+      </Grid>
+      <Divider vertical>Instruction</Divider>
+    </Segment>
     
   );
 };

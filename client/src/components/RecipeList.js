@@ -18,7 +18,7 @@ const RecipeList = props => {
   /* Ohjelma kokoajan printtaa tätä consolee*/
   // console.log("mika taa on",props.recipes)
   return (
-    <div>
+    <Card.Group>
       {/*
       <h2>What kind recipes u wanna see?</h2>
        Nämä mielellään allekkain 2 riveissä 
@@ -28,25 +28,28 @@ const RecipeList = props => {
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
+     <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
   */}
 
       {props.recipes.map(recipe => (
-        <li key={recipe.id}>
-          <Card.Group>
-            <Card>
-              <Card.Content>
+       
+         
+            <Link to={`/recipes/${recipe.id}` }><Card >
+              
+              <Card.Content  key={recipe.id}>
                 <Card.Header>
-      <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+        {recipe.title}
                 </Card.Header>
-                <Card.Description>
+                <Card.Meta>
                   {recipe.category}
-                </Card.Description>
+                </Card.Meta>
+          
               </Card.Content>
-            </Card>
-          </Card.Group>
-        </li>
+            </Card></Link>
+         
+        
       ))}
-    </div>
+      </Card.Group>
   );
 };
 

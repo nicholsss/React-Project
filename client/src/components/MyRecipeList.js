@@ -10,6 +10,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+import { Card } from "semantic-ui-react";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const MyRecipeList = props => {
   //console.log("USEIRURHRSR", user.recipes)
@@ -19,13 +20,12 @@ const MyRecipeList = props => {
   const recipeByUser = props.users.find(
     re => re.username === props.user.username
   );
-  console.log("rebbe.", recipeByUser);
 
   /* Ohjelma kokoajan printtaa tätä consolee*/
   // console.log("mika taa on",props.recipes)
 
   return (
-    <div>
+    <Card.Group>
       {/*
       <h2>What kind recipes u wanna see?</h2>
        Nämä mielellään allekkain 2 riveissä 
@@ -35,20 +35,29 @@ const MyRecipeList = props => {
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
+     <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
     
   */}
       {/*
       recipeByUser && recipeByUser katsoo että ei ole tyhjä.
        */}
-      {recipeByUser && recipeByUser.recipes.map(recipe => (
-        <li key ={recipe.id}>
-          <Button>
-          <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-          </Button>
-        </li>
-      ))}
-    
-    </div>
+       
+      {recipeByUser &&
+        recipeByUser.recipes.map(recipe => (
+        
+          
+          <Link to={`/recipes/${recipe.id}`}>
+            <Card>
+              <Card.Content >
+                <Card.Header>{recipe.title}</Card.Header>
+                <Card.Meta>{recipe.category}</Card.Meta>
+
+                
+              </Card.Content>
+            </Card>
+          </Link>
+        ))}
+    </Card.Group>
   );
 };
 
