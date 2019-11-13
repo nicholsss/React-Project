@@ -18,6 +18,8 @@ import { initializeLogin, logout } from "./reducers/loginReducer";
 import { initializeRecipes } from "./reducers/recipeReducer";
 import { initializeUsers } from "./reducers/userReducer";
 
+import { Container } from 'semantic-ui-react'
+
 const App = props => {
   useEffect(() => {
     props.initializeUsers();
@@ -38,12 +40,13 @@ const App = props => {
 
   if (props.user === null) {
     return (
-      <div className="App">
+      <Container>
         <Router>
           <div>
             <Link style={padding} to="/">
               Home
             </Link>
+            <Link to="/recipes"> All recipes </Link>
             <Link style={padding} to="/login">
               Login
             </Link>
@@ -54,10 +57,13 @@ const App = props => {
           <div>
             <Route exact path="/login" render={() => <LoginForm />} />
             <Route exact path="/register" render={() => <RegistrationForm />} />
+            
+          <Route exact path="/recipes" render={() => <RecipeList />} />
+       
           </div>
           <h1>Homepage has buttons to filter food category</h1>
         </Router>
-      </div>
+      </Container>
     );
   }
   console.log("user", props.user.username)
@@ -65,7 +71,6 @@ const App = props => {
   console.log("users", props.users)
   return (
     <div className="App">
-     
 
       <Router>
         <div>
@@ -125,3 +130,4 @@ const Button = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
 `;
+

@@ -10,6 +10,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+import { Card } from "semantic-ui-react";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const RecipeList = props => {
   const [category, setCategory] = useState("");
@@ -31,9 +32,18 @@ const RecipeList = props => {
 
       {props.recipes.map(recipe => (
         <li key={recipe.id}>
-          <Button>
-            <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-          </Button>
+          <Card.Group>
+            <Card>
+              <Card.Content>
+                <Card.Header>
+      <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+                </Card.Header>
+                <Card.Description>
+                  {recipe.category}
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          </Card.Group>
         </li>
       ))}
     </div>

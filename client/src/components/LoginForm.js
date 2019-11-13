@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { loginUser, setUser } from "../reducers/loginReducer";
 
+import { Form, Button } from "semantic-ui-react";
+
 const LoginForm = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -27,37 +29,36 @@ const LoginForm = props => {
     <div>
       <h2>Please Login</h2>
 
-      <form onSubmit={handleLogin}>
-        <div>
-          username
+      <Form onSubmit={handleLogin}>
+        <Form.Field>
           <input
-            type="string"
+            placeholder="username"
+           
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-        </div>
-        <div>
-          password
+        </Form.Field>
+        <Form.Field>
+          
           <input
+           placeholder="password"
+           
             type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-        </div>
+        </Form.Field>
         <Button>Login</Button>
-      </form>
+      </Form>
     </div>
   );
 };
 
-export default connect(
-  null,
-  {
-    loginUser
-  }
-)(LoginForm);
+export default connect(null, {
+  loginUser
+})(LoginForm);
 
-const Button = styled.button`
+/*const Button = styled.button`
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
@@ -65,3 +66,4 @@ const Button = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
 `;
+*/

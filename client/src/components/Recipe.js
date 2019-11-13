@@ -10,6 +10,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
 
