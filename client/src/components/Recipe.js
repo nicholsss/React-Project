@@ -16,7 +16,7 @@ import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
 const Recipe = props => {
 
   
-  
+  console.log("object", props.users)
 
   if (props.recipe === undefined) {
     return null;
@@ -27,13 +27,14 @@ const Recipe = props => {
       props.removeRecipe(recipe)
     }
   }
-  console.log("Recipe yks: ", props.recipe.id);
+  console.log("Recipe yks: ", props.recipe.user.username);
   console.log("ainesosaaaaaa", props.recipe.ingredient);
   
   return (
     <Segment>
       <Grid columns={2} relaxed='very'>
         <Grid.Column>
+<p>Made by {props.recipe.user.username}</p>
       <h1>{props.recipe.title}</h1>
       <em><p>{props.recipe.category}</p></em>
 
