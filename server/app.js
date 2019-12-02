@@ -23,11 +23,11 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .catch((error) => {
       console.log('error connection to MongoDB:', error.message)
   })
-
+/*
 if (process.env.NODE_ENV === 'test') {
     const testingRouter = require('./controllers/testing')
     app.use('/api/testing', testingRouter)
     console.log('running in test mode')
   }
-
+*/
 module.exports = app;
