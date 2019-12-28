@@ -14,36 +14,39 @@ import { Card } from "semantic-ui-react";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const RecipeList = props => {
   const [category, setCategory] = useState("");
+  
+console.log("caregory", category)
 
-  /* Ohjelma kokoajan printtaa tätä consolee*/
-  // console.log("mika taa on",props.recipes)
+const recipesToShow = category
+        ?props.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
+        :props.recipes
+
   return (
     <Card.Group>
-      {/*
+      
       <h2>What kind recipes u wanna see?</h2>
-       Nämä mielellään allekkain 2 riveissä 
-       Nää ei tee mitään tällä hetkellä
-       
+
+     {/* setCategory(category.concat("Meat"))   */}  
+     <Button onClick={() => setCategory("")} >All</Button>
     <Button onClick={() => setCategory("Meat")} >Meat</Button>
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
-     <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-  */}
+     
+    
 
-      {props.recipes.map(recipe => (
+      {recipesToShow.map(recipe => (
        
          
-            <Link to={`/recipes/${recipe.id}` }><Card >
+            <Link key={recipe.id} to={`/recipes/${recipe.id}` }><Card  >
               
-              <Card.Content  key={recipe.id}>
+              <Card.Content >
                 <Card.Header>
-        {recipe.title}
+                  {recipe.title}
                 </Card.Header>
                 <Card.Meta>
                   {recipe.category}
                 </Card.Meta>
-          
               </Card.Content>
             </Card></Link>
          

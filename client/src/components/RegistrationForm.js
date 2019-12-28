@@ -37,7 +37,7 @@ const RegistrationForm = () => {
        <Form.Field>
           
           <input
-          placeholder="username"
+          placeholder="password"
             type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
