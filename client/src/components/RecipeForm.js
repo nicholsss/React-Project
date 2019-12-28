@@ -124,8 +124,9 @@ const RecipeForm = props => {
           <div>{/*index ei ole välttämättä paras ratkaisu tähän*/}</div>
           <ul>
             {ingredients.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index}> {item} <button> remove</button></li>
             ))}
+            
           </ul>
         </Form.Field>
 
