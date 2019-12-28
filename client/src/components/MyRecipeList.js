@@ -11,42 +11,36 @@ import {
   withRouter
 } from "react-router-dom";
 import { Card } from "semantic-ui-react";
-//TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const MyRecipeList = props => {
-  //console.log("USEIRURHRSR", user.recipes)
   const [category, setCategory] = useState("");
-  console.log("userasrasrasafsafaaf", props.user.username);
-  console.log("object", props.users);
+
   const recipeByUser = props.users.find(
     re => re.username === props.user.username
   );
-
-  /* Ohjelma kokoajan printtaa tätä consolee*/
-  // console.log("mika taa on",props.recipes)
+  const recipesToShow = category
+  ?recipeByUser && recipeByUser.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
+  :recipeByUser && recipeByUser.recipes
 
   return (
     <Card.Group>
-      {/*
+     
       <h2>What kind recipes u wanna see?</h2>
-       Nämä mielellään allekkain 2 riveissä 
-       Nää ei tee mitään tällä hetkellä
-       
+  
+    <Button onClick={() => setCategory("")} >All</Button>
     <Button onClick={() => setCategory("Meat")} >Meat</Button>
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
-     <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
     
-  */}
+ 
       {/*
       recipeByUser && recipeByUser katsoo että ei ole tyhjä.
        */}
        
-      {recipeByUser &&
-        recipeByUser.recipes.map(recipe => (
+      {recipesToShow && recipesToShow.map(recipe => (
         
           
-          <Link to={`/recipes/${recipe.id}`}>
+          <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
             <Card>
               <Card.Content >
                 <Card.Header>{recipe.title}</Card.Header>

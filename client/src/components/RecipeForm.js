@@ -15,32 +15,55 @@ import {
   Label,
   List
 } from "semantic-ui-react";
+
+import { setNotification } from '../reducers/notificationReducer'
+import Notification from './Notification'
+
 const RecipeForm = props => {
-  const [title, setTitle] = useState("");
-  const [ingredient, setIngredient] = useState("");
-  const [instruction, setInstruction] = useState("");
-  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState('');
+  const [ingredient, setIngredient] = useState('');
+  const [instruction, setInstruction] = useState('');
+  const [category, setCategory] = useState('');
   const [ingredients, setIngredients] = useState([]);
+  
+  const notify =(message, color ='succes') => {
+    props.setNotification({message, color}, 10)
+  }
+
 
   //<Button onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
   const handleSubmit = async event => {
     event.preventDefault();
-    props.createRecipe(title, category, ingredients, instruction);
-    setTitle("");
-    setIngredient("");
+   if(!title && !category  &&  !ingredients && !instruction){
+      props.createRecipe({title, category, ingredients, instruction})
+    } else {
+      console.log('LODCSKDMND')
+      notify('Please fill all fields', 'error')
+    }
+    
+    setTitle('');
+    setIngredients([]);
     setInstruction('')
   };
+
   const addIng = () => {
-    setIngredients(ingredients => [...ingredients, ingredient]);
+    
+    //setIngredients(ingredients => [...ingredients, ingredient]);
+    if(ingredient){
+    setIngredients(ingredients.concat(ingredient))
     setIngredient('')
+  }
+ 
   };
   return (
+   
     <div className="ingredientInput">
+    <Notification/>
       <Form onSubmit={handleSubmit}>
         <Form.Field>
           <h1>Recipe name</h1>
           <input
-            type="string"
+            type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
           />
@@ -49,7 +72,7 @@ const RecipeForm = props => {
         {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
 
         <Form.Field>
-  <h2>What category is your recipe: {category}</h2>
+  <h2>What category is your recipe {category}</h2>
 
           <Button
             type="button"
@@ -84,15 +107,17 @@ const RecipeForm = props => {
 
         <Form.Field>
           <input
-            type="string"
+            type="text"
             value={ingredient}
             onChange={({ target }) => setIngredient(target.value)}
+           
           />
           <div>{/**/}</div>
           <Button
             type="button"
             onClick={addIng
             }
+          
           >
             Add a Ingerient
           </Button>
@@ -122,7 +147,7 @@ const RecipeForm = props => {
 };
 
 export default connect(null, {
-  createRecipe
+  createRecipe,setNotification
 })(RecipeForm);
 
 /*const Button = styled.button`

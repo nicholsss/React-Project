@@ -3,32 +3,37 @@ import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { loginUser, setUser } from "../reducers/loginReducer";
-
+import { setNotification } from '../reducers/notificationReducer'
+import Notification from './Notification'
 import { Form, Button } from "semantic-ui-react";
 
 const LoginForm = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async event => {
-    event.preventDefault();
-    try {
-      props.loginUser({
-        username: username,
-        password: password
-      });
-      setUsername("");
-      setPassword("");
-      console.log("loggin succes");
-    } catch (expection) {
-      console.log("Login failed");
-    }
-  };
+  const notify =(message, color ='succes') => {
+    props.setNotification({message, color}, 10)
+  }
+
+  
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    props.loginUser({
+      username: username,
+      password: password
+    }).catch(() => {
+      notify('wrong username or password', 'error')
+    })
+    setUsername("");
+    setPassword("");
+  }
 
   return (
     <div>
+      
       <h2>Please Login</h2>
-
+      <Notification />
       <Form onSubmit={handleLogin}>
         <Form.Field>
           <input
@@ -55,7 +60,7 @@ const LoginForm = props => {
 };
 
 export default connect(null, {
-  loginUser
+  loginUser, setNotification
 })(LoginForm);
 
 /*const Button = styled.button`
