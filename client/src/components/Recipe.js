@@ -22,6 +22,7 @@ const Recipe = props => {
     return null;
   }
   const remove = async recipe => {
+    console.log("lol")
     const ok = window.confirm("Are u sure?")
     if(ok){
       props.removeRecipe(recipe)
@@ -45,12 +46,15 @@ const Recipe = props => {
       <Grid.Column>
         
       <p>{props.recipe.instruction}</p>
-
+      <button onClick ={() => remove(props.recipe)}>remove</button>
       </Grid.Column>
-
+     
       </Grid>
+    
       <Divider vertical>Instruction</Divider>
+      
     </Segment>
+    
     
   );
 };
