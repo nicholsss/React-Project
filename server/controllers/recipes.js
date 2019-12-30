@@ -35,9 +35,14 @@ recipesRouter.post("/", async (request, response) => {
       category: body.category,
       ingredient:body.ingredients,
       instruction:body.instruction,
-      user: user._id
+      user: user._id,
+      likes: 0
     })
-
+/*
+    if(recipe.likes){
+      recipe.likes= 0
+    }
+    */
     const savedRecipe = await recipe.save()
     user.recipes = user.recipes.concat(savedRecipe._id)
     await user.save()
@@ -45,6 +50,18 @@ recipesRouter.post("/", async (request, response) => {
   } catch(exception) {
     next(exception)
   }
+})
+
+recipesRouter.put('/:id', async(request,response) => {
+  const { title, category, ingredient,instruction,likes } = request.body
+
+  const recipe = {
+    title, category, ingredient,instruction,likes,
+  }
+  const updatedRecipe = await Recipe
+    .findByIdAndUpdate(request.params.id, recipe, { new: true }).populate('user', { username: 1 }).populate('comments', {text:1})
+    
+  response.json(updatedRecipe.toJSON())
 })
 
 
@@ -68,6 +85,7 @@ recipesRouter.delete('/:id', async (request,response) => {
 
   }
 })
+
   /*
   const recipe = new Recipe(request.body);
 

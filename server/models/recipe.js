@@ -6,7 +6,7 @@ const recipeSchema = new mongoose.Schema({
    //time:Number,
     ingredient:{type:[String], required:true},
     instruction:{type:String, required:true},
-
+    likes:{type:Number},
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

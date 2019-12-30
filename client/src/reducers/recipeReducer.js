@@ -10,16 +10,17 @@ const reducer = (state = [], action) => {
       
       case"REMOVE":
       return state.filter(a => a.id !== action.data.id)
-
+    case "LIKE":
+    return action.data;
     default:
       return state;
   }
 };
 
-export const createRecipe = (title, category, ingredients, instruction) => {
-  console.log("reduxx", title);
+export const createRecipe = (recipe) => {
+  //console.log("reduxx", title);
   return async dispatch => {
-    const recipe = { title, category, ingredients, instruction };
+    //const recipe = { title, category, ingredients, instruction };
     console.log("whole recipe", recipe);
     const newRecipe = await recipeService.create(recipe);
 
@@ -40,7 +41,17 @@ export const removeRecipe = recipe => {
     })
   }
 }
-
+export const likeRecipe = (recipe) => {
+  return async dispatch => {
+    console.log("likerecipe")
+  const liked = { ...recipe, likes:recipe.likes +1}
+  const data = await recipeService.update(liked)
+  dispatch({
+    data: recipe,
+    type:'LIKE'
+  })
+}
+}
 export const initializeRecipes = () => {
   return async dispatch => {
     const data = await recipeService.getAll();

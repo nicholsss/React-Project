@@ -13,7 +13,8 @@ import {
   Select,
   TextArea,
   Label,
-  List
+  List,
+  CommentAction
 } from "semantic-ui-react";
 
 import { setNotification } from '../reducers/notificationReducer'
@@ -32,10 +33,11 @@ const RecipeForm = props => {
 
 
   //<Button onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
-  const handleSubmit = async event => {
+  const handleSubmit =  event => {
     event.preventDefault();
-   if(!title && !category  &&  !ingredients && !instruction){
-      props.createRecipe({title, category, ingredients, instruction})
+   if(title && category  && ingredients && instruction){
+      const recipe = { title, category, ingredients, instruction }
+      props.createRecipe(recipe)
     } else {
       console.log('LODCSKDMND')
       notify('Please fill all fields', 'error')
@@ -52,9 +54,14 @@ const RecipeForm = props => {
     if(ingredient){
     setIngredients(ingredients.concat(ingredient))
     setIngredient('')
+    }
+  }
+
+  const removeIng = (i) => {
+    console.log("poistetaan", i)
+    setIngredients(ingredients.filter(ing => ing !== i))
   }
  
-  };
   return (
    
     <div className="ingredientInput">
@@ -115,16 +122,21 @@ const RecipeForm = props => {
           <div>{/**/}</div>
           <Button
             type="button"
-            onClick={addIng
-            }
+            onClick={addIng}
           
           >
-            Add a Ingerient
+            Add a Ingredient
           </Button>
           <div>{/*index ei ole välttämättä paras ratkaisu tähän*/}</div>
           <ul>
             {ingredients.map((item, index) => (
-              <li key={index}> {item} <button> remove</button></li>
+              <li key={index}> {item} 
+              <Button
+              type="button"
+              onClick={() => removeIng(item)}>
+                remove
+              </Button>
+              </li>
             ))}
             
           </ul>
@@ -132,7 +144,6 @@ const RecipeForm = props => {
 
         <div className="guideInput">
           <h2>Add Recipe guide</h2>
-
           <textarea
             wid="true"
             value={instruction}

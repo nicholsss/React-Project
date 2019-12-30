@@ -3,6 +3,7 @@ import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import {removeRecipe } from "../reducers/recipeReducer";
+import {likeRecipe } from "../reducers/recipeReducer";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,6 +22,13 @@ const Recipe = props => {
   if (props.recipe === undefined) {
     return null;
   }
+  const like = async recipe => {
+    console.log("lol")
+    const ok = window.confirm("Are u sure?")
+    if(ok){
+      props.likeRecipe(recipe)
+    }
+  }
   const remove = async recipe => {
     console.log("lol")
     const ok = window.confirm("Are u sure?")
@@ -30,6 +38,7 @@ const Recipe = props => {
   }
   console.log("Recipe yks: ", props.recipe.user.username);
   console.log("ainesosaaaaaa", props.recipe.ingredient);
+  console.log("token", props.user.token);
   
   return (
     <Segment>
@@ -38,7 +47,7 @@ const Recipe = props => {
       <p>Made by {props.recipe.user.username}</p>
       <h1>{props.recipe.title}</h1>
       <em><p>{props.recipe.category}</p></em>
-
+      <p>{props.recipe.likes}</p>
       {props.recipe.ingredient.map(i => (
         <li key={i}>{i}</li>
       ))}
@@ -46,13 +55,12 @@ const Recipe = props => {
       <Grid.Column>
         
       <p>{props.recipe.instruction}</p>
+      
       <button onClick ={() => remove(props.recipe)}>remove</button>
+      <button onClick ={() => like(props.recipe)}>Like</button>
+
       </Grid.Column>
-<<<<<<< HEAD
      
-=======
-      <button onClick={() => remove(props.recipe)}>remove</button>
->>>>>>> acce3f8860d4437e75269f7f321006dbef717018
       </Grid>
     
       <Divider vertical>Instruction</Divider>
@@ -65,7 +73,8 @@ const Recipe = props => {
 
 const MapStateToProps = state => {
   return {
-    recipes: state.recipes
+    recipes: state.recipes,
+    user: state.user
   };
 };
 const mapDispatchToProps ={
