@@ -35,7 +35,7 @@ const Recipe = props => {
     <Segment>
       <Grid columns={2} relaxed='very'>
         <Grid.Column>
-<p>Made by {props.recipe.user.username}</p>
+      <p>Made by {props.recipe.user.username}</p>
       <h1>{props.recipe.title}</h1>
       <em><p>{props.recipe.category}</p></em>
 
@@ -48,7 +48,11 @@ const Recipe = props => {
       <p>{props.recipe.instruction}</p>
       <button onClick ={() => remove(props.recipe)}>remove</button>
       </Grid.Column>
+<<<<<<< HEAD
      
+=======
+      <button onClick={() => remove(props.recipe)}>remove</button>
+>>>>>>> acce3f8860d4437e75269f7f321006dbef717018
       </Grid>
     
       <Divider vertical>Instruction</Divider>
