@@ -46,11 +46,11 @@ const recipesToShow = category
                 </Card.Header>
                 <Card.Meta>
                   {recipe.category}
+                  <br/>
+                  {recipe.likes}
                 </Card.Meta>
               </Card.Content>
             </Card></Link>
-         
-        
       ))}
       </Card.Group>
   );

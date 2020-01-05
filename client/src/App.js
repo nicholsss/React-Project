@@ -20,7 +20,7 @@ import { initializeUsers } from "./reducers/userReducer";
 
 import { Container, Button, Menu } from "semantic-ui-react";
 
-const App = props => {
+const App = (props) => {
   useEffect(() => {
     props.initializeUsers();
   }, []);
@@ -33,7 +33,8 @@ const App = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const recipeById = id => props.recipes.find(r => r.id === id);
+  const recipeById = (id) => 
+    props.recipes.find(recipe => recipe.id === id);
   //const userById = id => props.users.find(u => u.id ===id)
 
   const padding = { padding: 5 };
@@ -117,9 +118,8 @@ const App = props => {
         <Route
           exact
           path="/recipes/:id"
-          render={({ match }) => (
-            <Recipe recipe={recipeById(match.params.id)} />
-          )}
+          render={({ match }) => 
+            <Recipe recipe={recipeById(match.params.id)} />}
         />
         <Route exact path="/myRecipes" render={() => <MyRecipeList />} />
         

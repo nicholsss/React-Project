@@ -4,7 +4,8 @@ const Recipe = require("../models/recipe");
 const User = require("../models/user");
 
 recipesRouter.get("/", async (request, response) => {
-  const recipes = await Recipe.find({}).populate("user", { username: 1 });
+  const recipes = await Recipe.find({})
+  .populate("user", { username: 1 });
   response.json(recipes.map(r => r.toJSON()));
 });
 
@@ -56,10 +57,12 @@ recipesRouter.put('/:id', async(request,response) => {
   const { title, category, ingredient,instruction,likes } = request.body
 
   const recipe = {
-    title, category, ingredient,instruction,likes,
+    title, category, ingredient,instruction,likes
   }
   const updatedRecipe = await Recipe
-    .findByIdAndUpdate(request.params.id, recipe, { new: true }).populate('user', { username: 1 }).populate('comments', {text:1})
+    .findByIdAndUpdate(request.params.id, recipe, { new: true })
+    .populate('user', { username: 1 })
+    .populate('comments', { text:1} )
     
   response.json(updatedRecipe.toJSON())
 })

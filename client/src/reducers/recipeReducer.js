@@ -4,14 +4,14 @@ const reducer = (state = [], action) => {
   switch (action.type) {
     case "ADD":
       return state.concat(action.data);
-
     case "INITIALIZE":
-      return action.data;
-      
-      case"REMOVE":
-      return state.filter(a => a.id !== action.data.id)
-    case "LIKE":
-    return action.data;
+      return action.data; 
+    case"REMOVE":
+      return state
+      .filter(a => a.id !== action.data.id)
+    case 'LIKE':
+      return state
+      .map(a => a.id !== action.data.id ? a : action.data)
     default:
       return state;
   }
@@ -36,8 +36,8 @@ export const removeRecipe = recipe => {
     await recipeService.remove(recipe)
 
     dispatch({
-      data:recipe,
-      type:'REMOVE'
+      data: recipe,
+      type: 'REMOVE'
     })
   }
 }
@@ -47,7 +47,7 @@ export const likeRecipe = (recipe) => {
   const liked = { ...recipe, likes:recipe.likes +1}
   const data = await recipeService.update(liked)
   dispatch({
-    data: recipe,
+    data,
     type:'LIKE'
   })
 }

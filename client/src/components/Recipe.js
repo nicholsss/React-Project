@@ -78,7 +78,8 @@ const MapStateToProps = state => {
   };
 };
 const mapDispatchToProps ={
-  removeRecipe
+  removeRecipe,
+  likeRecipe
 }
 
 
