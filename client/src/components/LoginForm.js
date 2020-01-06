@@ -11,11 +11,9 @@ const LoginForm = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const notify =(message, color ='succes') => {
+  const notify = (message, color ='succes') => {
     props.setNotification({message, color}, 10)
   }
-
-  
 
   const handleLogin = async (event) => {
     event.preventDefault()

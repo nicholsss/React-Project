@@ -21,9 +21,11 @@ import { initializeUsers } from "./reducers/userReducer";
 import { Container, Button, Menu } from "semantic-ui-react";
 
 const App = (props) => {
+
   useEffect(() => {
     props.initializeUsers();
   }, []);
+
   useEffect(() => {
     props.initializeRecipes();
   }, []);
@@ -75,7 +77,7 @@ const App = (props) => {
     );
   }
   console.log("user", props.user.username);
-  const userById = username => props.users.find(u => u.username === username);
+  //const userById = username => props.users.find(u => u.username === username);
   console.log("users", props.users);
   return (
    

@@ -4,9 +4,9 @@ const recipeSchema = new mongoose.Schema({
     title: {type:String, required:true},
     category: {type:String, required:true},
    //time:Number,
-    ingredient:{type:[String], required:true},
-    instruction:{type:String, required:true},
-    likes:{type:Number},
+    ingredient: {type:[String], required:true},
+    instruction: {type:String, required:true},
+    likes: Number,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

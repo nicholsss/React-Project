@@ -31,17 +31,18 @@ export const loginUser = (username, password) => {
     });
   };
 };
+
 export const logout = () => {
   window.localStorage.removeItem("loggedUser");
   recipeService.destroyToken()
   return { type: "LOGOUT" };
 };
+
 export const initializeLogin = () => {
   return async dispatch => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
-       recipeService.getAll("loggedUser")
       await recipeService.setToken(user.token)
       dispatch({
         data: user,

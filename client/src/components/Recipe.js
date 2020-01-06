@@ -18,24 +18,33 @@ const Recipe = props => {
 
   
   console.log("object", props.users)
+  
+  const creator = () => {
+    if (props.recipe.user) {
+      return props.recipe.user.username === props.user.username
+    } else {
+      return false
+    }
+  }
 
   if (props.recipe === undefined) {
     return null;
   }
-  const like = async recipe => {
-    console.log("lol")
+
+  const like = async (recipe) => {
     const ok = window.confirm("Are u sure?")
     if(ok){
       props.likeRecipe(recipe)
     }
   }
-  const remove = async recipe => {
-    console.log("lol")
+
+  const remove = async (recipe) => {
     const ok = window.confirm("Are u sure?")
     if(ok){
-      props.removeRecipe(recipe)
+      props.removeRecipe(recipe).then(() => props.history.push('/myRecipes'))
     }
   }
+  
   console.log("Recipe yks: ", props.recipe.user.username);
   console.log("ainesosaaaaaa", props.recipe.ingredient);
   console.log("token", props.user.token);
@@ -56,7 +65,8 @@ const Recipe = props => {
         
       <p>{props.recipe.instruction}</p>
       
-      <button onClick ={() => remove(props.recipe)}>remove</button>
+      {creator() && (<button onClick ={() => remove(props.recipe)}>remove</button>)}
+
       <button onClick ={() => like(props.recipe)}>Like</button>
 
       </Grid.Column>
@@ -83,4 +93,4 @@ const mapDispatchToProps ={
 }
 
 
-export default connect(MapStateToProps,mapDispatchToProps)(Recipe);
+export default connect(MapStateToProps,mapDispatchToProps)(withRouter(Recipe));
