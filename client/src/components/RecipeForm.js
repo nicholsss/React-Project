@@ -37,9 +37,8 @@ const RecipeForm = props => {
     event.preventDefault();
    if(title && category  && ingredients && instruction){
       const recipe = { title, category, ingredients, instruction }
-      props.createRecipe(recipe)
+      props.createRecipe(recipe).then(notify(`${recipe.title} added!`))
     } else {
-      console.log('LODCSKDMND')
       notify('Please fill all fields', 'error')
     }
     
@@ -58,7 +57,6 @@ const RecipeForm = props => {
   }
 
   const removeIng = (i) => {
-    console.log("poistetaan", i)
     setIngredients(ingredients.filter(ing => ing !== i))
   }
  
@@ -79,7 +77,8 @@ const RecipeForm = props => {
         {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
 
         <Form.Field>
-  <h2>What category is your recipe {category}</h2>
+
+          <h2>What category is your recipe {category}</h2>
 
           <Button
             type="button"

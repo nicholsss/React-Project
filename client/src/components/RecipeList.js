@@ -14,12 +14,10 @@ import { Card } from "semantic-ui-react";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const RecipeList = props => {
   const [category, setCategory] = useState("");
-  
-console.log("caregory", category)
 
 const recipesToShow = category
-        ?props.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
-        :props.recipes
+    ?props.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
+    :props.recipes
 
   return (
     <Card.Group>
@@ -27,7 +25,7 @@ const recipesToShow = category
       <h2>What kind recipes u wanna see?</h2>
 
      {/* setCategory(category.concat("Meat"))   */}  
-     <Button onClick={() => setCategory("")} >All</Button>
+    <Button onClick={() => setCategory("")} >All</Button>
     <Button onClick={() => setCategory("Meat")} >Meat</Button>
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>

@@ -12,6 +12,7 @@ import RecipeForm from "./components/RecipeForm";
 import RecipeList from "./components/RecipeList";
 import Recipe from "./components/Recipe";
 import MyRecipeList from "./components/MyRecipeList";
+import Home from "./components/Home";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
@@ -66,9 +67,9 @@ const App = (props) => {
             </Menu.Item>
           </Menu>
           <div>
+            <Route exact path="/" render={() => <Home />} />
             <Route exact path="/login" render={() => <LoginForm />} />
             <Route exact path="/register" render={() => <RegistrationForm />} />
-
             <Route exact path="/recipes" render={() => <RecipeList />} />
           </div>
           
@@ -76,9 +77,8 @@ const App = (props) => {
       </Container>
     );
   }
-  console.log("user", props.user.username);
   //const userById = username => props.users.find(u => u.username === username);
-  console.log("users", props.users);
+  
   return (
    
     <Container >
@@ -110,10 +110,8 @@ const App = (props) => {
         </Menu>
         
         <div>
+          <Route exact path="/" render={() => <Home />} />
           <Route exact path="/recipeForm" render={() => <RecipeForm />} />
-        </div>
-        
-        <div>
           <Route exact path="/recipes" render={() => <RecipeList />} />
         </div>
 

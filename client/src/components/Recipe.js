@@ -15,9 +15,6 @@ import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
 // <button onClick={() => remove(props.recipe)}>Delete</button>
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
-
-  
-  console.log("object", props.users)
   
   const creator = () => {
     if (props.recipe.user) {
@@ -44,10 +41,6 @@ const Recipe = props => {
       props.removeRecipe(recipe).then(() => props.history.push('/myRecipes'))
     }
   }
-  
-  console.log("Recipe yks: ", props.recipe.user.username);
-  console.log("ainesosaaaaaa", props.recipe.ingredient);
-  console.log("token", props.user.token);
   
   return (
     <Segment>
@@ -87,6 +80,7 @@ const MapStateToProps = state => {
     user: state.user
   };
 };
+
 const mapDispatchToProps ={
   removeRecipe,
   likeRecipe

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { createRecipe } from "../reducers/recipeReducer";
+//import { createRecipe } from "../reducers/recipeReducer";
 import {
   BrowserRouter as Router,
   Route,
@@ -11,31 +11,40 @@ import {
   withRouter
 } from "react-router-dom";
 import { Card } from "semantic-ui-react";
+
 const MyRecipeList = props => {
   const [category, setCategory] = useState("");
 
-  const recipeByUser = props.users.find(
-    re => re.username === props.user.username
+  /*const recipesByUser = props.users.find(
+    user => user.username === props.user.username
   );
+
+  const recipesByUser = 
+  console.log("user", props.user.username)
+  const username = props.user.username
+  props.recipes.map(recipe => console.log("user", recipe.user.username))
+  props.recipes.filter(
+    recipe => recipe.user.username !== username
+  );
+  console.log("byUser", recipesByUser)*/
+
   const recipesToShow = category
-  ?recipeByUser && recipeByUser.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
-  :recipeByUser && recipeByUser.recipes
+    ?props.user && props.recipes
+    .filter(recipe => recipe.user.username === props.user.username 
+    && recipe.category.toUpperCase().includes(category.toUpperCase()))
+    :props.user && props.recipes
+    .filter(recipe => recipe.user.username === props.user.username)
 
   return (
     <Card.Group>
      
-      <h2>What kind recipes u wanna see?</h2>
+    <h2>What kind recipes u wanna see?</h2>
   
     <Button onClick={() => setCategory("")} >All</Button>
     <Button onClick={() => setCategory("Meat")} >Meat</Button>
     <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
     <Button onClick={() => setCategory("Soup")}>Soup</Button>
     <Button onClick={() => setCategory("Fish")}>Fish</Button>
-    
- 
-      {/*
-      recipeByUser && recipeByUser katsoo että ei ole tyhjä.
-       */}
        
       {recipesToShow && recipesToShow.map(recipe => (
         
@@ -55,7 +64,7 @@ const MyRecipeList = props => {
   );
 };
 
-const MapStateToProps = state => {
+const MapStateToProps = (state) => {
   return {
     recipes: state.recipes,
     user: state.user,
