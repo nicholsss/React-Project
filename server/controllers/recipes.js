@@ -2,10 +2,12 @@ const recipesRouter = require("express").Router();
 const jwt = require("jsonwebtoken");
 const Recipe = require("../models/recipe");
 const User = require("../models/user");
+const Comment = require('../models/comment')
 
 recipesRouter.get("/", async (request, response) => {
   const recipes = await Recipe.find({})
-  .populate("user", { username: 1 });
+  .populate("user", { username: 1 })
+  .populate('comments', { content:1 })
   response.json(recipes.map(r => r.toJSON()));
 });
 
@@ -51,6 +53,21 @@ recipesRouter.post("/", async (request, response) => {
   } catch(exception) {
     next(exception)
   }
+})
+
+recipesRouter.post('/:id/comments', async(request, response) => {
+  const recipe = await Recipe.findById(request.params.id)
+  if(!recipe) {
+    return response.status(401).json({ error: 'recipe missing' })
+  }
+  const comment = new Comment(request.body)
+  comment.recipe = recipe.id
+  const result = await comment.save()
+  recipe.comments = recipe.comments.concat(result)
+  await recipe.save()
+
+  response.status(201).json(result)
+
 })
 
 recipesRouter.put('/:id', async(request,response) => {

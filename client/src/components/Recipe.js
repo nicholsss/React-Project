@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import {removeRecipe } from "../reducers/recipeReducer";
-import {likeRecipe } from "../reducers/recipeReducer";
+import {removeRecipe, likeRecipe, commentRecipe } from "../reducers/recipeReducer";
+import { useField } from '../hooks'
 import {
   BrowserRouter as Router,
   Route,
@@ -15,7 +15,11 @@ import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
 // <button onClick={() => remove(props.recipe)}>Delete</button>
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
-  
+  const[comment, commentReset] = useField('text')
+  if (props.recipe === undefined) {
+    return null;
+  }
+
   const creator = () => {
     if (props.recipe.user) {
       return props.recipe.user.username === props.user.username
@@ -24,8 +28,11 @@ const Recipe = props => {
     }
   }
 
-  if (props.recipe === undefined) {
-    return null;
+  const handleComment = async (event) => {
+    console.log("comment")
+    event.preventDefault()
+    props.commentRecipe(props.recipe, comment.value)
+    commentReset()
   }
 
   const like = async (recipe) => {
@@ -49,7 +56,8 @@ const Recipe = props => {
       <p>Made by {props.recipe.user.username}</p>
       <h1>{props.recipe.title}</h1>
       <em><p>{props.recipe.category}</p></em>
-      <p>{props.recipe.likes}</p>
+      <br/>
+      <p>likes {props.recipe.likes}</p>
       {props.recipe.ingredient.map(i => (
         <li key={i}>{i}</li>
       ))}
@@ -63,11 +71,26 @@ const Recipe = props => {
       <button onClick ={() => like(props.recipe)}>Like</button>
 
       </Grid.Column>
-     
-      </Grid>
-    
-      <Divider vertical>Instruction</Divider>
       
+      <Grid.Column>
+      <form onSubmit={handleComment}>
+      <div>
+        <input {...comment} /> <button type='submit'>add comment</button>
+      </div>
+      </form>
+      <list>
+        {props.recipe.comments.map(comment => (
+          <ul key={comment.id}>{comment.content}</ul>
+        ))}
+      </list>
+      </Grid.Column>
+      </Grid>
+
+      
+
+      <Divider vertical>Instruction</Divider>
+
+
     </Segment>
     
     
@@ -83,7 +106,8 @@ const MapStateToProps = state => {
 
 const mapDispatchToProps ={
   removeRecipe,
-  likeRecipe
+  likeRecipe,
+  commentRecipe
 }
 
 

@@ -12,6 +12,9 @@ const reducer = (state = [], action) => {
     case 'LIKE':
       return state
       .map(a => a.id !== action.data.id ? a : action.data)
+    case 'COMMENT':
+      return state
+      .map(a => a.id !== action.data.id ? a : action.data)
     default:
       return state;
   }
@@ -44,14 +47,27 @@ export const removeRecipe = recipe => {
 export const likeRecipe = (recipe) => {
   return async dispatch => {
     console.log("likerecipe")
-  const liked = { ...recipe, likes:recipe.likes +1}
-  const data = await recipeService.update(liked)
-  dispatch({
-    data,
-    type:'LIKE'
-  })
+    const liked = { ...recipe, likes:recipe.likes +1}
+    const data = await recipeService.update(liked)
+    dispatch({
+      data,
+      type:'LIKE'
+    })
+  }
 }
+export const commentRecipe = (recipe, value) => {
+  return async (dispatch) => {
+    const comment = { content: value }
+    const addedComment = await recipeService.comment(recipe.id, comment)
+    const commentedRecipe = { ...recipe, comments: recipe.comments.concat(addedComment) }
+    dispatch({
+      data: commentedRecipe,
+      type: 'COMMENT'
+    })
+  }
 }
+
+
 export const initializeRecipes = () => {
   return async dispatch => {
     const data = await recipeService.getAll();
@@ -62,4 +78,5 @@ export const initializeRecipes = () => {
     });
   };
 };
+
 export default reducer;

@@ -6,6 +6,7 @@ import { loginUser, setUser } from "../reducers/loginReducer";
 import { setNotification } from '../reducers/notificationReducer'
 import Notification from './Notification'
 import { Form, Button } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
 
 const LoginForm = props => {
   const [username, setUsername] = useState("");
@@ -20,7 +21,8 @@ const LoginForm = props => {
     props.loginUser({
       username: username,
       password: password
-    }).catch(() => {
+    }).then(() => props.history.push('/')
+    ).catch(() => {
       notify('wrong username or password', 'error')
     })
     setUsername("");
@@ -59,7 +61,7 @@ const LoginForm = props => {
 
 export default connect(null, {
   loginUser, setNotification
-})(LoginForm);
+})(withRouter(LoginForm));
 
 /*const Button = styled.button`
   background: transparent;
