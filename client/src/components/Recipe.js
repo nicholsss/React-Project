@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import {removeRecipe, likeRecipe, commentRecipe } from "../reducers/recipeReducer";
+import {removeRecipe, likeRecipe, commentRecipe} from "../reducers/recipeReducer";
 import { useField } from '../hooks'
 import {
   BrowserRouter as Router,

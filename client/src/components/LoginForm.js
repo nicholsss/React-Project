@@ -13,7 +13,7 @@ const LoginForm = props => {
   const [password, setPassword] = useState("");
 
   const notify = (message, color ='succes') => {
-    props.setNotification({message, color}, 10)
+    props.setNotification({message, color}, 2)
   }
 
   const handleLogin = async (event) => {
@@ -21,7 +21,8 @@ const LoginForm = props => {
     props.loginUser({
       username: username,
       password: password
-    }).then(() => props.history.push('/')
+    }).then(() => notify(`${username} logged in!`))
+    .then(() => props.history.push('/')
     ).catch(() => {
       notify('wrong username or password', 'error')
     })

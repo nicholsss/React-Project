@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from "react-redux";
-
+import Notification from './Notification'
 const Home = (props) => {
   return (
-  <h1>Home</h1>
+    <div>
+      <Notification />
+      <h1>Home</h1>
+    </div>
   )
 }
 

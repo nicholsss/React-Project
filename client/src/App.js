@@ -129,7 +129,11 @@ const App = (props) => {
 };
 
 const mapStateToProps = state => {
-  return { users: state.users, user: state.user, recipes: state.recipes };
+  return { 
+    users: state.users,
+    user: state.user, 
+    recipes: state.recipes 
+  };
 };
 const mapDispatchToProps = {
   initializeLogin,
