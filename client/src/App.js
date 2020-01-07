@@ -72,7 +72,14 @@ const App = (props) => {
             <Route exact path="/register" render={() => <RegistrationForm />} />
             <Route exact path="/recipes" render={() => <RecipeList />} />
           </div>
-          
+
+          <Route
+          exact
+          path="/recipes/:id"
+          render={({ match }) => 
+            <Recipe recipe={recipeById(match.params.id)} />}
+        />
+
         </Router>
       </Container>
     );
@@ -113,6 +120,7 @@ const App = (props) => {
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/recipeForm" render={() => <RecipeForm />} />
           <Route exact path="/recipes" render={() => <RecipeList />} />
+          <Route exact path="/myRecipes" render={() => <MyRecipeList />} />
         </div>
 
         <Route
@@ -121,7 +129,7 @@ const App = (props) => {
           render={({ match }) => 
             <Recipe recipe={recipeById(match.params.id)} />}
         />
-        <Route exact path="/myRecipes" render={() => <MyRecipeList />} />
+        
         
        </Router>
     </Container>

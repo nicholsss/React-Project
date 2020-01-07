@@ -27,6 +27,11 @@ const MyRecipeList = props => {
     recipe => recipe.user.username !== username
   );
   console.log("byUser", recipesByUser)*/
+console.log("user", props.user)
+props.recipes.map( recipe => 
+  console.log("reseipti",recipe.user)
+)
+
 
   const recipesToShow = category
     ?props.user && props.recipes

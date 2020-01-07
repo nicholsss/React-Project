@@ -20,7 +20,7 @@ const getTokenFrom = request => {
 }
 
 recipesRouter.post("/", async (request, response) => {
-
+  
   const body = request.body
 
   const token = getTokenFrom(request)
@@ -38,7 +38,7 @@ recipesRouter.post("/", async (request, response) => {
       category: body.category,
       ingredient: body.ingredients,
       instruction: body.instruction,
-      user: user._id,
+      user: user,
       likes: 0
     })
 /*
@@ -74,7 +74,7 @@ recipesRouter.put('/:id', async(request,response) => {
   const { title, category, ingredient,instruction,likes } = request.body
 
   const recipe = {
-    title, category, ingredient,instruction,likes
+    title, category, ingredient, instruction, likes, comments
   }
   const updatedRecipe = await Recipe
     .findByIdAndUpdate(request.params.id, recipe, { new: true })

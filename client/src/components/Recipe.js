@@ -16,12 +16,14 @@ import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
   const[comment, commentReset] = useField('text')
+  console.log("rseptii", props.recipe)
   if (props.recipe === undefined) {
     return null;
   }
 
   const creator = () => {
-    if (props.recipe.user) {
+    console.log("lol", props.recipe.user)
+    if (props.user) {
       return props.recipe.user.username === props.user.username
     } else {
       return false
@@ -67,8 +69,8 @@ const Recipe = props => {
       <p>{props.recipe.instruction}</p>
       
       {creator() && (<button onClick ={() => remove(props.recipe)}>remove</button>)}
-
-      <button onClick ={() => like(props.recipe)}>Like</button>
+      
+      {props.user && (<button onClick ={() => like(props.recipe)}>Like</button>)}
 
       </Grid.Column>
       
@@ -78,11 +80,11 @@ const Recipe = props => {
         <input {...comment} /> <button type='submit'>add comment</button>
       </div>
       </form>
-      <list>
+      <li>
         {props.recipe.comments.map(comment => (
           <ul key={comment.id}>{comment.content}</ul>
         ))}
-      </list>
+      </li>
       </Grid.Column>
       </Grid>
 
