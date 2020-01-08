@@ -58,11 +58,12 @@ const Recipe = props => {
   const overline = () => {};
 
   return (
-    <div>
-      <div >
-        <div>
+  
+    <Container>
+      <Left >
+        <Content>
+        <h1>{props.recipe.title}</h1>
           <p>Made by {props.recipe.user.username}</p>
-          <h1>{props.recipe.title}</h1>
           <em>
             <p>{props.recipe.category}</p>
           </em>
@@ -71,9 +72,8 @@ const Recipe = props => {
           {props.recipe.ingredient.map(i => (
             <li key={i}>{i}</li>
           ))}
-        </div>
+        </Content>
         <div>
-          <p>{props.recipe.instruction}</p>
 
           {creator() && (
             <button onClick={() => remove(props.recipe)}>remove</button>
@@ -96,10 +96,15 @@ const Recipe = props => {
             ))}
           </li>
         </div>
-      </div>
+      </Left>
 
-      <div vertical>Instruction</div>
-    </div>
+      <Right >
+        <h1 style={{textAlign:"center"}}>Instruction</h1>
+        <p>{props.recipe.instruction}</p>
+      </Right>
+
+    </Container>
+
   );
 };
 
@@ -118,3 +123,21 @@ const mapDispatchToProps = {
 
 export default connect(MapStateToProps, mapDispatchToProps)(withRouter(Recipe));
 
+const Container = styled.div`
+display: flex;
+width:100%;
+`
+const Left = styled.div`
+flex: 1;
+border: 1px solid black;
+`
+const Right = styled.div`
+flex: 1;
+border: 1px solid green;
+padding: 5px 15px 25px 15px;
+`
+const Content = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center
+`

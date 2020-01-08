@@ -18,7 +18,7 @@ import styled from "styled-components";
 import { initializeLogin, logout } from "./reducers/loginReducer";
 import { initializeRecipes } from "./reducers/recipeReducer";
 import { initializeUsers } from "./reducers/userReducer";
-
+import "./App.css";
 const App = (props) => {
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const App = (props) => {
     props.recipes.find(recipe => recipe.id === id);
   //const userById = id => props.users.find(u => u.id ===id)
 
-  const padding = { padding: 5 };
+  
 
   if (props.user === null) {
 
@@ -52,7 +52,7 @@ const App = (props) => {
         <Router>
           <Header>
             <div>
-              <Link style={padding} to="/">
+              <Link  to="/">
                 Home
               </Link>
             </div>
@@ -61,12 +61,12 @@ const App = (props) => {
             </div>
             <Nest>
             <div>
-              <Link style={padding} to="/login">
-                Login
+              <Link  to="/login">
+                Login 
               </Link>
             </div>
             <div>
-              <Link style={padding} to="/register">
+              <Link to="/register">
                 Register
               </Link>
             </div>
@@ -98,7 +98,7 @@ const App = (props) => {
       <Router>
         <Header>
           <div>
-            <Link style={padding} to="/">
+            <Link  to="/">
               Home
             </Link>
           </div>
@@ -177,9 +177,11 @@ align-items:center;
 const Header = styled.div`
 justify-content: space-between;
 display:flex;
-width:900px;
+width:100%;
 height:100px;
 background-color: red;
+flex-wrap:wrap;
+padding: 5px 5px 5px 5px;
 `
 const Nest = styled.div`
 display:flex;

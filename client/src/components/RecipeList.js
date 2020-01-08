@@ -33,7 +33,7 @@ const RecipeList = props => {
       <button onClick={() => setCategory("Soup")}>Soup</button>
       <button onClick={() => setCategory("Fish")}>Fish</button>
       
-</Container>
+      </Container>
 <Container>
       {recipesToShow.map(recipe => (
         <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
