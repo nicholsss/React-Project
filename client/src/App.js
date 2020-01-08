@@ -25,10 +25,12 @@ const App = (props) => {
 
   useEffect(() => {
     props.initializeUsers();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     props.initializeRecipes();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

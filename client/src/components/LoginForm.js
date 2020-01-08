@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { loginUser, setUser } from "../reducers/loginReducer";
+import { loginUser } from "../reducers/loginReducer";
 import { setNotification } from '../reducers/notificationReducer'
 import Notification from './Notification'
 import { Form, Button } from "semantic-ui-react";

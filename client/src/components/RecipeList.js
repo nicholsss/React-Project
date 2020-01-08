@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { createRecipe } from "../reducers/recipeReducer";
 import {
   BrowserRouter as Router,
   Route,

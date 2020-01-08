@@ -3,7 +3,6 @@ import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createRecipe } from "../reducers/recipeReducer";
-import { useField } from "../hooks";
 import {
   Button,
   Checkbox,
@@ -31,8 +30,6 @@ const RecipeForm = props => {
     props.setNotification({message, color}, 10)
   }
 
-
-  //<Button onClick={event => setList(list => [...list, ingredient])}>Add a Ingerient</Button>
   const handleSubmit =  event => {
     event.preventDefault();
    if(title && category  && ingredients && instruction){

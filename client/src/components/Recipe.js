@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -12,7 +12,7 @@ import {
   withRouter
 } from "react-router-dom";
 import { Divider, Grid, Image, Segment } from 'semantic-ui-react'
-// <button onClick={() => remove(props.recipe)}>Delete</button>
+
 //Tää komponentti näyttää klikatun reseptin tiedot
 const Recipe = props => {
   const[comment, commentReset] = useField('text')
