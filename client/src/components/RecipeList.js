@@ -15,6 +15,7 @@ import { Card } from "semantic-ui-react";
 const RecipeList = props => {
   const [category, setCategory] = useState("");
 
+  
 const recipesToShow = category
     ?props.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
     :props.recipes
