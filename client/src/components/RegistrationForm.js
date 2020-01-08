@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import registrationService from "../services/register";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { setNotification } from '../reducers/notificationReducer'
 import "../App.css";
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
