@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import registrationService from "../services/register";
 import "../App.css";
-import { connect } from "react-redux";
-import { Form, Button } from "semantic-ui-react";
-import Notification from './Notification'
-import { setNotification } from '../reducers/notificationReducer'
-import { withRouter } from "react-router-dom";
-const RegistrationForm = (props) => {
+const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,17 +31,17 @@ const RegistrationForm = (props) => {
   return (
     <div>
       <h2>Please Register</h2>
-      <Notification />
-      <Form onSubmit={handleRegister}>
+
+      <form onSubmit={handleRegister}>
         
-       <Form.Field>
+       <div>
           <input
             placeholder="username"
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-       </Form.Field>
-       <Form.Field>
+       </div>
+       <div>
           
           <input
           placeholder="password"
@@ -54,9 +49,9 @@ const RegistrationForm = (props) => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          </Form.Field>
-        <Button>Register</Button>
-      </Form>
+          </div>
+        <button>Register</button>
+      </form>
     </div>
   );
 };

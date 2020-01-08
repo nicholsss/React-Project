@@ -3,18 +3,7 @@ import "../App.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createRecipe } from "../reducers/recipeReducer";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Radio,
-  Select,
-  TextArea,
-  Label,
-  List,
-  CommentAction
-} from "semantic-ui-react";
+import { useField } from "../hooks";
 
 import { setNotification } from '../reducers/notificationReducer'
 import Notification from './Notification'
@@ -61,54 +50,54 @@ const RecipeForm = props => {
    
     <div className="ingredientInput">
     <Notification/>
-      <Form onSubmit={handleSubmit}>
-        <Form.Field>
+      <form onSubmit={handleSubmit}>
+        <div>
           <h1>Recipe name</h1>
           <input
             type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
           />
-        </Form.Field>
+        </div>
 
         {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
 
-        <Form.Field>
+        <div>
 
           <h2>What category is your recipe {category}</h2>
 
-          <Button
+          <button
             type="button"
             className={category === "Meat" ? "colored" : "5f6769"}
             onClick={() => setCategory("Meat")}
           >
             Meat
-          </Button>
-          <Button
+          </button>
+          <button
             type="button"
             className={category === "Vegetarian" ? "colored" : "5f6769"}
             onClick={() => setCategory("Vegetarian")}
           >
             Vegetarian
-          </Button>
-          <Button
+          </button>
+          <button
             type="button"
             className={category === "Soup" ? "colored" : "5f6769"}
             onClick={() => setCategory("Soup")}
           >
             Soup
-          </Button>
-          <Button
+          </button>
+          <button
             type="button"
             className={category === "Fish" ? "colored" : "5f6769"}
             onClick={() => setCategory("Fish")}
           >
             Fish
-          </Button>
-        </Form.Field>
+          </button>
+        </div>
         
 
-        <Form.Field>
+        <div>
           <input
             type="text"
             value={ingredient}
@@ -116,27 +105,27 @@ const RecipeForm = props => {
            
           />
           <div>{/**/}</div>
-          <Button
+          <button
             type="button"
             onClick={addIng}
           
           >
             Add a Ingredient
-          </Button>
+          </button>
           <div>{/*index ei ole välttämättä paras ratkaisu tähän*/}</div>
           <ul>
             {ingredients.map((item, index) => (
               <li key={index}> {item} 
-              <Button
+              <button
               type="button"
               onClick={() => removeIng(item)}>
                 remove
-              </Button>
+              </button>
               </li>
             ))}
             
           </ul>
-        </Form.Field>
+        </div>
 
         <div className="guideInput">
           <h2>Add Recipe guide</h2>
@@ -147,9 +136,9 @@ const RecipeForm = props => {
           />
 
           {/* This button adds recipe*/}
-          <Button type="submit">Create</Button>
+          <button type="submit">Create</button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };
