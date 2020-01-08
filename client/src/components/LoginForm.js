@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { loginUser, setUser } from "../reducers/loginReducer";
 import { setNotification } from '../reducers/notificationReducer'
 import Notification from './Notification'
-import { Form, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 
 const LoginForm = props => {
@@ -34,16 +33,16 @@ const LoginForm = props => {
       
       <h2>Please Login</h2>
       <Notification />
-      <Form onSubmit={handleLogin}>
-        <Form.Field>
+      <form onSubmit={handleLogin}>
+       
           <input
             placeholder="username"
            
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-        </Form.Field>
-        <Form.Field>
+       
+       
           
           <input
            placeholder="password"
@@ -52,9 +51,9 @@ const LoginForm = props => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-        </Form.Field>
-        <Button>Login</Button>
-      </Form>
+       
+        <button>Login</button>
+      </form>
     </div>
   );
 };

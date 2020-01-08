@@ -10,48 +10,49 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import { Card } from "semantic-ui-react";
 //TÄÄ KOKO KOMPONENTTI TÄYSIN KESKEN JA IHAN SEKASIN
 const RecipeList = props => {
   const [category, setCategory] = useState("");
 
-  
-const recipesToShow = category
-    ?props.recipes.filter (recipe => recipe.category.toUpperCase().includes(category.toUpperCase()))
-    :props.recipes
+  const recipesToShow = category
+    ? props.recipes.filter(recipe =>
+        recipe.category.toUpperCase().includes(category.toUpperCase())
+      )
+    : props.recipes;
 
   return (
-    <Card.Group>
+    <Cont>
+       <h2>What kind recipes u wanna see?</h2>
+    <Container>
+
       
-      <h2>What kind recipes u wanna see?</h2>
-
-     {/* setCategory(category.concat("Meat"))   */}  
-    <Button onClick={() => setCategory("")} >All</Button>
-    <Button onClick={() => setCategory("Meat")} >Meat</Button>
-    <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
-    <Button onClick={() => setCategory("Soup")}>Soup</Button>
-    <Button onClick={() => setCategory("Fish")}>Fish</Button>
-     
-    
-
+      
+      {/* setCategory(category.concat("Meat"))   */}
+      <button onClick={() => setCategory("")}>All</button>
+      <button onClick={() => setCategory("Meat")}>Meat</button>
+      <button onClick={() => setCategory("Vegetarian")}>Vegetarian</button>
+      <button onClick={() => setCategory("Soup")}>Soup</button>
+      <button onClick={() => setCategory("Fish")}>Fish</button>
+      
+</Container>
+<Container>
       {recipesToShow.map(recipe => (
-       
-         
-            <Link key={recipe.id} to={`/recipes/${recipe.id}` }><Card  >
-              
-              <Card.Content >
-                <Card.Header>
-                  {recipe.title}
-                </Card.Header>
-                <Card.Meta>
-                  {recipe.category}
-                  <br/>
-                  {recipe.likes}
-                </Card.Meta>
-              </Card.Content>
-            </Card></Link>
+        <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
+          <Card>
+            <Cover>
+              <h1>{recipe.title}</h1>
+            </Cover>
+            <Content>
+              {recipe.category}
+              <br />
+              {recipe.likes}
+            </Content>
+            
+          </Card>
+          </Link>
       ))}
-      </Card.Group>
+    </Container>
+    </Cont>
   );
 };
 
@@ -71,3 +72,31 @@ const Button = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
 `;
+const Cont = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+`
+const Container = styled.div`
+display:flex;
+flex-wrap:wrap;
+
+
+`
+const Card = styled.div`
+width:225px;
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 10px 0px 10px 5px;
+`;
+const Cover = styled.div`
+  height: 150px;
+  width: 100%;
+  background-color:pink;
+`;
+const Content = styled.div`
+flex:1;
+`

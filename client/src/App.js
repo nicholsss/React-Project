@@ -19,8 +19,6 @@ import { initializeLogin, logout } from "./reducers/loginReducer";
 import { initializeRecipes } from "./reducers/recipeReducer";
 import { initializeUsers } from "./reducers/userReducer";
 
-import { Container, Button, Menu } from "semantic-ui-react";
-
 const App = (props) => {
 
   useEffect(() => {
@@ -43,29 +41,35 @@ const App = (props) => {
   const padding = { padding: 5 };
 
   if (props.user === null) {
+
+
     return (
+
+
       <Container>
         <Router>
-          <Menu>
-            <Menu.Item>
+          <Header>
+            <div>
               <Link style={padding} to="/">
                 Home
               </Link>
-            </Menu.Item>
-            <Menu.Item>
+            </div>
+            <div>
               <Link to="/recipes"> All recipes </Link>
-            </Menu.Item>
-            <Menu.Item>
+            </div>
+            <Nest>
+            <div>
               <Link style={padding} to="/login">
                 Login
               </Link>
-            </Menu.Item>
-            <Menu.Item>
+            </div>
+            <div>
               <Link style={padding} to="/register">
                 Register
               </Link>
-            </Menu.Item>
-          </Menu>
+            </div>
+            </Nest>
+          </Header>
           <div>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/login" render={() => <LoginForm />} />
@@ -90,31 +94,31 @@ const App = (props) => {
    
     <Container >
       <Router>
-        <Menu>
-          <Menu.Item>
+        <Header>
+          <div>
             <Link style={padding} to="/">
               Home
             </Link>
-          </Menu.Item>
+          </div>
 
-          <Menu.Item>
+          <div>
             <Link to="/recipeForm"> Add recipe </Link>
-          </Menu.Item>
+          </div>
 
-          <Menu.Item>
+          <div>
             <Link to="/recipes"> All recipes </Link>
-          </Menu.Item>
+          </div>
 
-          <Menu.Item>
+          <div>
             <Link to="/myRecipes">my recipes</Link>
-          </Menu.Item>
+          </div>
 
-          <Menu.Item>
-            <Button  onClick={props.logout}>
+          <div>
+            <button  onClick={props.logout}>
               logout
-            </Button>
-          </Menu.Item>
-        </Menu>
+            </button>
+          </div>
+        </Header>
         
         <div>
           <Route exact path="/" render={() => <Home />} />
@@ -157,3 +161,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
   padding: 0.25em 1em;
 `;
 */
+const Container = styled.div`
+display:flex;
+background-color: #D6E9FE;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+`
+const Header = styled.div`
+justify-content: space-between;
+display:flex;
+width:900px;
+height:100px;
+background-color: red;
+`
+const Nest = styled.div`
+display:flex;
+`

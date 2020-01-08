@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import registrationService from "../services/register";
 import "../App.css";
-import { Form, Button } from "semantic-ui-react";
 const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,16 +24,16 @@ const RegistrationForm = () => {
     <div>
       <h2>Please Register</h2>
 
-      <Form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister}>
         
-       <Form.Field>
+       <div>
           <input
             placeholder="username"
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-       </Form.Field>
-       <Form.Field>
+       </div>
+       <div>
           
           <input
           placeholder="password"
@@ -42,9 +41,9 @@ const RegistrationForm = () => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          </Form.Field>
-        <Button>Register</Button>
-      </Form>
+          </div>
+        <button>Register</button>
+      </form>
     </div>
   );
 };

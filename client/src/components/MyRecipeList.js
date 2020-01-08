@@ -10,7 +10,6 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import { Card } from "semantic-ui-react";
 
 const MyRecipeList = props => {
   const [category, setCategory] = useState("");
@@ -41,31 +40,31 @@ props.recipes.map( recipe =>
     .filter(recipe => recipe.user.username === props.user.username)
 
   return (
-    <Card.Group>
+    <div>
      
     <h2>What kind recipes u wanna see?</h2>
   
-    <Button onClick={() => setCategory("")} >All</Button>
-    <Button onClick={() => setCategory("Meat")} >Meat</Button>
-    <Button onClick={() => setCategory("Vegetarian")}>Vegetarian</Button>
-    <Button onClick={() => setCategory("Soup")}>Soup</Button>
-    <Button onClick={() => setCategory("Fish")}>Fish</Button>
+    <button onClick={() => setCategory("")} >All</button>
+    <button onClick={() => setCategory("Meat")} >Meat</button>
+    <button onClick={() => setCategory("Vegetarian")}>Vegetarian</button>
+    <button onClick={() => setCategory("Soup")}>Soup</button>
+    <button onClick={() => setCategory("Fish")}>Fish</button>
        
       {recipesToShow && recipesToShow.map(recipe => (
         
           
           <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-            <Card>
-              <Card.Content >
-                <Card.Header>{recipe.title}</Card.Header>
-                <Card.Meta>{recipe.category}</Card.Meta>
+            <div>
+              <div >
+                <div>{recipe.title}</div>
+                <div>{recipe.category}</div>
 
                 
-              </Card.Content>
-            </Card>
+              </div>
+            </div>
           </Link>
         ))}
-    </Card.Group>
+    </div>
   );
 };
 
