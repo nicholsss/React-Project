@@ -8,9 +8,7 @@ const Home = (props) => {
     <Container>
       
       
-      
-
-
+    
     
 
   </Container>
@@ -28,6 +26,7 @@ export default connect(MapStateToProps)(Home)
 
 const Container = styled.div`
 display:flex;
-width:100%;
+height:800px;
+
 
 `

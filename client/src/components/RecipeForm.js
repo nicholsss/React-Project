@@ -48,98 +48,98 @@ const RecipeForm = props => {
  
   return (
    
-    <div className="ingredientInput">
+    <Container>
     <Notification/>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
           <h1>Recipe name</h1>
           <input
             type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
           />
-        </div>
+        </FormGroup>
 
         {/* Active prop tähän, niin että yks nappi pysyy värjättynä kun sitä painaa.*/}
+        <h2>What category is your recipe {category}</h2>
+        <ButtonGroup>
 
-        <div>
-
-          <h2>What category is your recipe {category}</h2>
-
-          <button
+         
+            {/*Nämä napit pitää luultavasti erottaa toisista napeista stailauksen vuoksi.*/}
+          <Button
             type="button"
             className={category === "Meat" ? "colored" : "5f6769"}
             onClick={() => setCategory("Meat")}
           >
             Meat
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={category === "Vegetarian" ? "colored" : "5f6769"}
             onClick={() => setCategory("Vegetarian")}
           >
             Vegetarian
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={category === "Soup" ? "colored" : "5f6769"}
             onClick={() => setCategory("Soup")}
           >
             Soup
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={category === "Fish" ? "colored" : "5f6769"}
             onClick={() => setCategory("Fish")}
           >
             Fish
-          </button>
-        </div>
+          </Button>
+        </ButtonGroup>
         
 
-        <div>
+        <FormGroup>
           <input
             type="text"
             value={ingredient}
             onChange={({ target }) => setIngredient(target.value)}
            
           />
-          <div>{/**/}</div>
-          <button
+         
+          <Button
             type="button"
             onClick={addIng}
           
           >
             Add a Ingredient
-          </button>
-          <div>{/*index ei ole välttämättä paras ratkaisu tähän*/}</div>
+          </Button>
+           {/*Listasta mahdollisesti scrollattava*/}
           <ul>
             {ingredients.map((item, index) => (
               <li key={index}> {item} 
-              <button
+              <Button
               type="button"
               onClick={() => removeIng(item)}>
                 remove
-              </button>
+              </Button>
               </li>
             ))}
             
           </ul>
-        </div>
+        </FormGroup>
 
-        <div className="guideInput">
+        <FormGroup>
           <h2>Add Recipe guide</h2>
-          <textarea
+          <TextArea
             wid="true"
             value={instruction}
             onChange={({ target }) => setInstruction(target.value)}
           />
 
           {/* This button adds recipe*/}
-          <button type="submit">Create</button>
-        </div>
-      </form>
-    </div>
+          <Button type="submit">Create</Button>
+        </FormGroup>
+      </Form>
+    </Container>
   );
 };
 
@@ -147,6 +147,45 @@ export default connect(null, {
   createRecipe,setNotification
 })(RecipeForm);
 
+const Container = styled.div`
+display:flex;
+justify-content:center
+`
+const Form = styled.form`
+border:solid 1px black;
+
+justify-content:center;
+background-color: #ede59a;
+width: 80%;
+padding: 50px;
+height:100%;
+  margin: 0 0 40px 0;
+`
+const FormGroup = styled.div`
+margin-bottom: 40px;
+display: flex;
+justify-content: flex-start;
+flex-direction: column;
+flex-wrap: wrap;
+`
+const ButtonGroup = styled.div`
+margin-bottom: 40px;
+display: flex;
+justify-content: center;
+
+flex-wrap: wrap;
+`
+
+const Button = styled.button`
+background-color:white;
+margin:2px;
+`
+
+const TextArea = styled.textarea`
+resize: none;
+min-height: 100px;
+padding:7px;
+`
 /*const Button = styled.button`
 background:white
 
