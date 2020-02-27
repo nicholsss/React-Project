@@ -1,5 +1,5 @@
 # Platform to save and search recipes
-# Application was build with Mongodb, Express, Node, React.
+# Application was made with Mongodb, Express, Node, React.
 # Link for the application
 # https://resepties.herokuapp.com/
 
