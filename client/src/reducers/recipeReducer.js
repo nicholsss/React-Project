@@ -21,9 +21,8 @@ const reducer = (state = [], action) => {
 };
 
 export const createRecipe = (recipe) => {
-  //console.log("reduxx", title);
   return async dispatch => {
-    //const recipe = { title, category, ingredients, instruction };
+
     console.log("whole recipe", recipe);
     const newRecipe = await recipeService.create(recipe);
 

@@ -1,17 +1,15 @@
 import React from 'react'
 import { connect } from "react-redux";
-import styled from "styled-components";
-{/* https://konpa.github.io/devicon/*/}
-//<img src={ require('../assets/kitchen.svg') } />
+import Notification from './Notification'
 const Home = (props) => {
   return (
-    <Container>
+    <div>
+      <Notification />
       
+      <h1>Store your recipes, and search for other people recipes</h1>
+      <img src={ require('../assets/kitchen.svg') } alt="made by @realvjy" />
       
-    
-    
-
-  </Container>
+    </div>
   )
 }
 
@@ -23,10 +21,3 @@ const MapStateToProps = state => {
   };
   
 export default connect(MapStateToProps)(Home)
-
-const Container = styled.div`
-display:flex;
-height:800px;
-
-
-`

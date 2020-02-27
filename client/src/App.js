@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import RecipeForm from "./components/RecipeForm";
@@ -14,21 +8,22 @@ import Recipe from "./components/Recipe";
 import MyRecipeList from "./components/MyRecipeList";
 import Home from "./components/Home";
 import { connect } from "react-redux";
-import styled from "styled-components";
+
 import { initializeLogin, logout } from "./reducers/loginReducer";
 import { initializeRecipes } from "./reducers/recipeReducer";
 import { initializeUsers } from "./reducers/userReducer";
-import "./App.css";
-const App = (props) => {
 
+import { Container, Menu } from "semantic-ui-react";
+
+const App = props => {
   useEffect(() => {
     props.initializeUsers();
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     props.initializeRecipes();
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -36,42 +31,34 @@ const App = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const recipeById = (id) => 
-    props.recipes.find(recipe => recipe.id === id);
-  //const userById = id => props.users.find(u => u.id ===id)
+  const recipeById = id => props.recipes.find(recipe => recipe.id === id);
 
-  
+  const padding = { padding: 5 };
 
   if (props.user === null) {
-
-
     return (
-
-
       <Container>
         <Router>
-          <Header>
-            <div>
-              <Link  to="/">
+          <Menu fluid widths={4}>
+            <Menu.Item>
+              <Link style={padding} to="/">
                 Home
               </Link>
-            </div>
-            <div>
+            </Menu.Item>
+            <Menu.Item>
               <Link to="/recipes"> All recipes </Link>
-            </div>
-            <Nest>
-            <div>
-              <Link  to="/login">
-                Login 
+            </Menu.Item>
+            <Menu.Item>
+              <Link style={padding} to="/login">
+                Login
               </Link>
-            </div>
-            <div>
-              <Link to="/register">
+            </Menu.Item>
+            <Menu.Item>
+              <Link style={padding} to="/register">
                 Register
               </Link>
-            </div>
-            </Nest>
-          </Header>
+            </Menu.Item>
+          </Menu>
           <div>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/login" render={() => <LoginForm />} />
@@ -80,48 +67,46 @@ const App = (props) => {
           </div>
 
           <Route
-          exact
-          path="/recipes/:id"
-          render={({ match }) => 
-            <Recipe recipe={recipeById(match.params.id)} />}
-        />
-
+            exact
+            path="/recipes/:id"
+            render={({ match }) => (
+              <Recipe recipe={recipeById(match.params.id)} />
+            )}
+          />
         </Router>
       </Container>
     );
   }
-  //const userById = username => props.users.find(u => u.username === username);
-  
+
   return (
-   
-    <Container >
+    <Container>
       <Router>
-        <Header>
-          <div>
-            <Link  to="/">
+        <Menu fluid widths={5}>
+          <Menu.Item>
+            <Link style={padding} to="/">
               Home
             </Link>
-          </div>
+          </Menu.Item>
 
-          <div>
+          <Menu.Item>
             <Link to="/recipeForm"> Add recipe </Link>
-          </div>
+          </Menu.Item>
 
-          <div>
+          <Menu.Item>
             <Link to="/recipes"> All recipes </Link>
-          </div>
+          </Menu.Item>
 
-          <div>
+          <Menu.Item>
             <Link to="/myRecipes">my recipes</Link>
-          </div>
+          </Menu.Item>
 
-          <div>
-            <button  onClick={props.logout}>
+          <Menu.Item>
+            <Link to="/" onClick={props.logout}>
               logout
-            </button>
-          </div>
-        </Header>
-        
+            </Link>
+          </Menu.Item>
+        </Menu>
+
         <div>
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/recipeForm" render={() => <RecipeForm />} />
@@ -132,21 +117,20 @@ const App = (props) => {
         <Route
           exact
           path="/recipes/:id"
-          render={({ match }) => 
-            <Recipe recipe={recipeById(match.params.id)} />}
+          render={({ match }) => (
+            <Recipe recipe={recipeById(match.params.id)} />
+          )}
         />
-        
-        
-       </Router>
+      </Router>
     </Container>
   );
 };
 
 const mapStateToProps = state => {
-  return { 
+  return {
     users: state.users,
-    user: state.user, 
-    recipes: state.recipes 
+    user: state.user,
+    recipes: state.recipes
   };
 };
 const mapDispatchToProps = {
@@ -157,32 +141,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-/*const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid black;
-  color: black;
-  margin: 0 1em;
-  padding: 0.25em 1em;
-`;
-*/
-const Container = styled.div`
-display:flex;
-background-color: #D6E9FE;
-flex-wrap:wrap;
-justify-content:center;
-align-items:center;
-`
-const Header = styled.div`
-justify-content: space-between;
-display:flex;
-width:100%;
-height:100px;
-background-color: red;
-flex-wrap:wrap;
-padding: 5px 5px 5px 5px;
-`
-const Nest = styled.div`
-display:flex;
-`
